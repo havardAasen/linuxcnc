@@ -32,9 +32,8 @@ Build-Depends: debhelper (>= 6),
     procps,
     psmisc,
     desktop-file-utils,
-    yapps2,
+    yapps2 | yapps2-runtime,
     libtirpc-dev,
-    python3-yapps,
     libepoxy-dev,
 Standards-Version: @STANDARDS_VERSION@
 Vcs-Browser: https://github.com/LinuxCNC/linuxcnc
@@ -49,7 +48,7 @@ Depends: g++, @KERNEL_HEADERS@,
     ${python3:Depends}, ${misc:Depends},
     @MAIN_PACKAGE_NAME@ (= ${binary:Version}),
     udev,
-    @YAPPS_RUNTIME@
+    yapps2 | yapps2-runtime,
 Section: libs
 Description: PC based motion controller for real-time Linux
  LinuxCNC is the next-generation Enhanced Machine Controller which
