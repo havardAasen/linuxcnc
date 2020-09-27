@@ -72,3 +72,8 @@ jobs:
         sudo apt-get install ../*.deb
         ./scripts/runtests -p tests/
         lintian --info --display-info --pedantic --display-experimental ../*.deb
+    - name: Upload package
+      uses: actions/upload-artifact@v2
+      with:
+        name: package
+        path: ../*
