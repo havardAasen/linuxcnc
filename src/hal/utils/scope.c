@@ -447,11 +447,11 @@ static void about(int junk) {
             NULL);
 }
 
-static char *halscope_suffix(GtkFileSelection *fs) {
+static char *halscope_suffix(GtkFileChooser *fs) {
     static char buf[256];
     int len;
     char *suffix;
-    strncpy(buf, gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs)), 
+    strncpy(buf, gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(fs)),
             sizeof(buf)-10);
     len = strlen(buf);
 
@@ -460,7 +460,7 @@ static char *halscope_suffix(GtkFileSelection *fs) {
     return buf;
 }    
 
-static void do_open_configuration(GtkWidget *w, GtkFileSelection *fs) {
+static void do_open_configuration(GtkFileChooser *fs) {
     int n;
     for (n = 0; n < 16; n++) {
 	ctrl_usr->chan[n].data_source_type = -1;
@@ -472,52 +472,41 @@ static void do_open_configuration(GtkWidget *w, GtkFileSelection *fs) {
     refresh_display();
 }
 
-static void open_configuration(int junk) {
+static void open_configuration(GtkWindow *parent) {
     GtkWidget *filew;
-    filew = gtk_file_selection_new(_("Open Configuration File:"));
-    gtk_signal_connect (GTK_OBJECT (filew), "destroy",
-        (GtkSignalFunc) gtk_widget_destroy, &filew);
-    gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filew)->ok_button),
-                        "clicked", (GtkSignalFunc) do_open_configuration, filew );
-    //link ok to destroy, otherwise the window stays open
-    gtk_signal_connect_object (GTK_OBJECT (GTK_FILE_SELECTION
-                                            (filew)->ok_button),
-                               "clicked", (GtkSignalFunc) gtk_widget_destroy,
-                               GTK_OBJECT (filew));
-    gtk_signal_connect_object (GTK_OBJECT (GTK_FILE_SELECTION
-                                            (filew)->cancel_button),
-                               "clicked", (GtkSignalFunc) gtk_widget_destroy,
-                               GTK_OBJECT (filew));
-    gtk_file_selection_set_select_multiple(GTK_FILE_SELECTION(filew), FALSE);
-    gtk_file_selection_hide_fileop_buttons (GTK_FILE_SELECTION(filew) );
-    gtk_file_selection_complete(GTK_FILE_SELECTION(filew), "*.halscope");
-    gtk_dialog_run(GTK_DIALOG(filew));
+
+    filew = gtk_file_chooser_dialog_new(_("Open Configuration File:"),
+            parent,
+            GTK_FILE_CHOOSER_ACTION_OPEN,
+            _("_Cancel"), GTK_RESPONSE_CANCEL,
+            _("_Open"), GTK_RESPONSE_ACCEPT,
+            NULL);
+
+    if (gtk_dialog_run(GTK_DIALOG(filew)) == GTK_RESPONSE_ACCEPT) {
+        do_open_configuration(GTK_FILE_CHOOSER(filew));
+      }
+    gtk_widget_destroy(filew);
 }
 
-static void do_save_configuration(GtkWidget *w, GtkFileSelection *fs) {
+static void do_save_configuration(GtkFileChooser *fs) {
     write_config_file(halscope_suffix(fs));
 }
 
 
-static void save_configuration(int junk) {
+static void save_configuration(GtkWindow *parent) {
     GtkWidget *filew;
-    filew = gtk_file_selection_new(_("Open Configuration File:"));
-    gtk_signal_connect (GTK_OBJECT (filew), "destroy",
-        (GtkSignalFunc) gtk_widget_destroy, &filew);
-    gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filew)->ok_button),
-                        "clicked", (GtkSignalFunc) do_save_configuration, filew );
-    //link ok to destroy, otherwise the window stays open
-    gtk_signal_connect_object (GTK_OBJECT (GTK_FILE_SELECTION
-                                            (filew)->ok_button),
-                               "clicked", (GtkSignalFunc) gtk_widget_destroy,
-                               GTK_OBJECT (filew));
-    gtk_signal_connect_object (GTK_OBJECT (GTK_FILE_SELECTION
-                                            (filew)->cancel_button),
-                               "clicked", (GtkSignalFunc) gtk_widget_destroy,
-                               GTK_OBJECT (filew));
-    gtk_file_selection_set_select_multiple(GTK_FILE_SELECTION(filew), FALSE);
-    gtk_file_selection_hide_fileop_buttons (GTK_FILE_SELECTION(filew) );
-    gtk_dialog_run(GTK_DIALOG(filew));
+
+    filew = gtk_file_chooser_dialog_new(_("Save Configuration File:"),
+            parent,
+            GTK_FILE_CHOOSER_ACTION_SAVE,
+            _("_Cancel"), GTK_RESPONSE_CANCEL,
+            _("_Save"), GTK_RESPONSE_ACCEPT,
+            NULL);
+
+    if (gtk_dialog_run(GTK_DIALOG(filew)) == GTK_RESPONSE_ACCEPT) {
+        do_save_configuration(GTK_FILE_CHOOSER(filew));
+    }
+    gtk_widget_destroy(filew);
 }
 
 
