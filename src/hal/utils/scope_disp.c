@@ -187,7 +187,7 @@ void refresh_display(void)
     vert = &(ctrl_usr->vert);
     horiz = &(ctrl_usr->horiz);
     /* get window pointer */
-    disp->win = disp->drawing->window;
+    disp->win = gtk_widget_get_window(disp->drawing);
     if (disp->win == NULL) {
 	/* window isn't visible yet, do nothing */
 	printf("refresh_display(): win = NULL, bailing!\n");
@@ -222,7 +222,7 @@ void refresh_display(void)
     {
         GdkRectangle rect = {0, 0, disp->width, disp->height};
         GdkRegion *region = gdk_region_rectangle(&rect);
-        gdk_window_begin_paint_region(disp->drawing->window, region);
+        gdk_window_begin_paint_region(gtk_widget_get_window(disp->drawing), region);
         gdk_region_destroy(region);
     }
 
@@ -268,7 +268,7 @@ void refresh_display(void)
 
     update_readout();
 
-    gdk_window_end_paint(disp->drawing->window);
+    gdk_window_end_paint(gtk_widget_get_window(disp->drawing));
 }
 
 /***********************************************************************
@@ -608,7 +608,7 @@ static int handle_motion(GtkWidget *widget, GdkEventButton *event, gpointer data
     GdkModifierType mod;
     int x, y;
 
-    gdk_window_get_pointer(disp->drawing->window, &x, &y, &mod);
+    gdk_window_get_pointer(gtk_widget_get_window(disp->drawing), &x, &y, &mod);
     if(mod & GDK_BUTTON1_MASK) {
         left_drag(y-motion_y, y, event->state);
         return TRUE;
@@ -626,10 +626,12 @@ void update_readout(void) {
     scope_vert_t *vert = &(ctrl_usr->vert);
     scope_horiz_t *horiz = &(ctrl_usr->horiz);
     char tip[512];
-    GdkRectangle r = {vert->readout_label->allocation.x,
-            vert->readout_label->allocation.y,
-            vert->readout_label->allocation.width,
-            vert->readout_label->allocation.height};
+    /* commented this out, didn't notice any difference,
+     * allocation.x and y might be aquired with gtk_widget_get_pointer() */
+    //GdkRectangle r = {vert->readout_label->allocation.x,
+            //vert->readout_label->allocation.y,
+            //vert->readout_label->allocation.width,
+            //vert->readout_label->allocation.height};
     if(vert->selected != -1) {
         double t=0, p=0, v=0;
         int result = get_cursor_info(&t, &p, &v);
@@ -644,8 +646,7 @@ void update_readout(void) {
 
     gtk_label_set_markup(GTK_LABEL(vert->readout_label), tip);
 
-    gtk_widget_draw(vert->readout_label, &r);
-
+    //gtk_widget_draw(vert->readout_label, &r);
 }
 
 struct pt { double x, y; };

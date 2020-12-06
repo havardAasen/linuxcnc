@@ -594,6 +594,7 @@ static char *data_value(int type, void *valptr)
 static void create_probe_window(probe_t * probe)
 {
     GtkWidget *vbox, *hbox;
+    GtkWidget *label;
     GtkWidget *button_close;
     GtkWidget *scrolled_window;
     GtkTreeSelection *selection;
@@ -631,9 +632,9 @@ static void create_probe_window(probe_t * probe)
             GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
         /* create and set tabs in notebook */
-        hbox = gtk_hbox_new(TRUE, 0);
-        gtk_label_new_in_box(tab_label_text[n], hbox, TRUE, TRUE, 0);
-        gtk_notebook_append_page(GTK_NOTEBOOK(probe->notebook), scrolled_window, hbox);
+        label = gtk_label_new(tab_label_text[n]);
+        gtk_widget_set_size_request(label, 70, -1);
+        gtk_notebook_append_page(GTK_NOTEBOOK(probe->notebook), scrolled_window, label);
 
         /* create and initalize the list to hold the data */
         probe->lists[n] = gtk_tree_view_new();
