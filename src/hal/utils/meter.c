@@ -592,6 +592,7 @@ static char *data_value(int type, void *valptr)
 static void create_probe_window(probe_t * probe)
 {
     GtkWidget *vbox, *hbox;
+    GtkWidget *label;
     GtkWidget *button_close;
     GtkWidget *scrolled_window;
     GtkTreeSelection *selection;

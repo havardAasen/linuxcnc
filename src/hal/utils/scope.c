@@ -1,7 +1,7 @@
 /** This file, 'scope.c', is a GUI program that together with
     'scope_rt.c' serves as an oscilloscope to examine HAL pins,
     signals, and parameters.  It is a user space component and
-    uses GTK 1.2 or 2.0 for the GUI code.
+    uses GTK 3.0 for the GUI code.
 */
 
 static char *license = \
@@ -539,14 +539,14 @@ static void define_menubar(GtkWidget *vboxtop) {
     gtk_menu_shell_append(GTK_MENU_SHELL(filemenu), sep1);
     gtk_widget_show(sep1);
     
-    fileopendatafile = gtk_menu_item_new_with_mnemonic(_("_Open Data File..."));
+    fileopendatafile = gtk_menu_item_new_with_mnemonic(_("O_pen Data File..."));
     gtk_menu_shell_append(GTK_MENU_SHELL(filemenu), fileopendatafile);
     g_signal_connect_swapped(fileopendatafile, "activate",
             G_CALLBACK(menuitem_response), "file/open datafile");
     gtk_widget_set_sensitive(GTK_WIDGET(fileopendatafile), FALSE); // XXX
     gtk_widget_show(fileopendatafile);
     
-    filesavedatafile = gtk_menu_item_new_with_mnemonic(_("_Save Data File..."));
+    filesavedatafile = gtk_menu_item_new_with_mnemonic(_("S_ave Data File..."));
     gtk_menu_shell_append(GTK_MENU_SHELL(filemenu), filesavedatafile);
     g_signal_connect_swapped(filesavedatafile, "activate",
             G_CALLBACK(log_popup), 0);
@@ -575,7 +575,7 @@ static void define_menubar(GtkWidget *vboxtop) {
     gtk_widget_show(help_rootmenu);
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(help_rootmenu),helpmenu);
 
-    vbox = gtk_vbox_new(FALSE, 0);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(vboxtop), vbox);
     gtk_widget_show(vbox);
 
@@ -625,11 +625,11 @@ static void define_scope_windows(void)
 
     /* create main window, set its minimum size and title */
     ctrl_usr->main_win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_widget_set_size_request(GTK_WIDGET(ctrl_usr->main_win), 500, 350);
+    gtk_widget_set_size_request(GTK_WIDGET(ctrl_usr->main_win), 650, 400);
     gtk_window_set_title(GTK_WINDOW(ctrl_usr->main_win), _("HAL Oscilloscope"));
 
     /* top level - big vbox, menu above, everything else below */
-    vbox = gtk_vbox_new(FALSE, 0);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_set_border_width(GTK_CONTAINER(vbox), 0);
     gtk_container_add(GTK_CONTAINER(ctrl_usr->main_win), vbox);
     gtk_widget_show(vbox);
@@ -638,7 +638,7 @@ static void define_scope_windows(void)
     vboxbottom = gtk_hbox_new_in_box(FALSE, 0, 0, vbox, TRUE, TRUE, 0);
 
     /* one big hbox for everything under the menu */
-    hbox = gtk_hbox_new(FALSE, 0);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_set_border_width(GTK_CONTAINER(hbox), 0);
     /* add the hbox to the main window */
     gtk_container_add(GTK_CONTAINER(vboxbottom), hbox);
@@ -659,6 +659,8 @@ static void define_scope_windows(void)
     /* horizontal row of select buttons */
     ctrl_usr->waveform_win =
 	gtk_vbox_new_in_box(FALSE, 0, 0, vboxleft, TRUE, TRUE, 0);
+    gtk_widget_set_vexpand(ctrl_usr->waveform_win, TRUE);
+    gtk_widget_set_hexpand(ctrl_usr->waveform_win, TRUE);
     ctrl_usr->chan_sel_win =
 	gtk_hbox_new_in_box(TRUE, 0, 0, vboxleft, FALSE, FALSE, 0);
     ctrl_usr->chan_info_win =

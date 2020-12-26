@@ -520,24 +520,21 @@ void write_vert_config(FILE *fp)
 *                       LOCAL FUNCTIONS                                *
 ************************************************************************/
 
-void set_color(GdkColor *color, unsigned char red,
-		unsigned char green, unsigned char blue) {
-    color->red = ((unsigned long) red) << 8;
-    color->green = ((unsigned long) green) << 8;
-    color->blue = ((unsigned long) blue) << 8;
-    color->pixel =
-	((unsigned long) red) << 16 | ((unsigned long) green) << 8 |
-	((unsigned long) blue);
+void set_color(GdkRGBA *color, double red, double green, double blue) {
+    color->red = red;
+    color->green = green;
+    color->blue = blue;
+    color->alpha = 1.0;
 }
 
-extern int normal_colors[16][3], selected_colors[16][3];
+extern double normal_colors[16][3], selected_colors[16][3];
 static void init_chan_sel_window(void)
 {
     scope_vert_t *vert;
     GtkWidget *button;
     long n;
     gchar buf[5];
-    GdkColor c;
+    GdkRGBA c;
 
     vert = &(ctrl_usr->vert);
     for (n = 0; n < 16; n++) {
@@ -545,20 +542,16 @@ static void init_chan_sel_window(void)
 	/* define the button */
 	button = gtk_toggle_button_new_with_label(buf);
 
+        /* TODO It seems we need to start using css to get the buttons colored
+         * the way it was, css can be either inline or in a separate file. */
 	/* set up colors of the label */
 	set_color(&c, normal_colors[n][0],
 			normal_colors[n][1], normal_colors[n][2]);
-	gtk_widget_modify_bg(button, GTK_STATE_ACTIVE, &c);
-	gtk_widget_modify_bg(button, GTK_STATE_SELECTED, &c);
+	gtk_widget_override_color(button, GTK_STATE_FLAG_NORMAL, &c);
 
 	set_color(&c, selected_colors[n][0],
 			selected_colors[n][1], selected_colors[n][2]);
-	gtk_widget_modify_bg(button, GTK_STATE_PRELIGHT, &c);
-
-	set_color(&c, 0, 0, 0);
-	gtk_widget_modify_fg(button, GTK_STATE_ACTIVE, &c);
-	gtk_widget_modify_fg(button, GTK_STATE_SELECTED, &c);
-	gtk_widget_modify_fg(button, GTK_STATE_PRELIGHT, &c);
+	gtk_widget_override_color(button, GTK_STATE_FLAG_PRELIGHT, &c);
 
 	/* put it in the window */
 	gtk_box_pack_start(GTK_BOX(ctrl_usr->chan_sel_win), button, TRUE,
@@ -605,7 +598,6 @@ static void init_chan_info_window(void)
 
     vert->readout_label = gtk_label_new_in_box("",
 		    ctrl_usr->chan_info_win, FALSE, FALSE, 0);
-    gtk_misc_set_alignment(GTK_MISC(vert->readout_label), 0, 0);
     gtk_label_set_justify(GTK_LABEL(vert->readout_label), GTK_JUSTIFY_LEFT);
     gtk_label_size_to_fit(GTK_LABEL(vert->readout_label),
 		    "f(99999.9999) = 99999.9999 (ddt 99999.9999)");
@@ -627,7 +619,8 @@ static void init_vert_info_window(void)
     vbox = gtk_vbox_new_in_box(FALSE, 0, 0, hbox, TRUE, TRUE, 0);
     gtk_label_new_in_box(_("Gain"), vbox, FALSE, FALSE, 0);
     vert->scale_adj = gtk_adjustment_new(0, -5, 5, 1, 1, 0);
-    vert->scale_slider = gtk_vscale_new(GTK_ADJUSTMENT(vert->scale_adj));
+    vert->scale_slider = gtk_scale_new(
+            GTK_ORIENTATION_VERTICAL, GTK_ADJUSTMENT(vert->scale_adj));
     gtk_scale_set_digits(GTK_SCALE(vert->scale_slider), 0);
     gtk_scale_set_draw_value(GTK_SCALE(vert->scale_slider), FALSE);
     gtk_box_pack_start(GTK_BOX(vbox), vert->scale_slider, TRUE, TRUE, 0);
@@ -641,7 +634,8 @@ static void init_vert_info_window(void)
     vert->pos_adj =
 	gtk_adjustment_new(VERT_POS_RESOLUTION / 2, 0, VERT_POS_RESOLUTION, 1,
 	1, 0);
-    vert->pos_slider = gtk_vscale_new(GTK_ADJUSTMENT(vert->pos_adj));
+    vert->pos_slider = gtk_scale_new(
+            GTK_ORIENTATION_VERTICAL, GTK_ADJUSTMENT(vert->pos_adj));
     gtk_scale_set_digits(GTK_SCALE(vert->pos_slider), 0);
     gtk_scale_set_draw_value(GTK_SCALE(vert->pos_slider), FALSE);
     gtk_box_pack_start(GTK_BOX(vbox), vert->pos_slider, TRUE, TRUE, 0);
@@ -735,13 +729,16 @@ static gboolean dialog_set_offset(int chan_num)
 
     /* display message */
     label = gtk_label_new(msg);
-    gtk_misc_set_padding(GTK_MISC(label), 15, 5);
+    gtk_widget_set_margin_top(label, 5);
+    gtk_widget_set_margin_bottom(label, 5);
+    gtk_widget_set_margin_start(label, 15);
+    gtk_widget_set_margin_end(label, 15);
     gtk_box_pack_start(GTK_BOX(GTK_CONTAINER(content_area)),
             label, FALSE, TRUE, 0);
 
     /* a separator */
     gtk_box_pack_start(GTK_BOX(GTK_CONTAINER(content_area)),
-            gtk_hseparator_new(), FALSE, FALSE, 0);
+            gtk_separator_new(GTK_ORIENTATION_HORIZONTAL), FALSE, FALSE, 0);
 
     /* a checkbox: AC coupled */
     vert->offset_ac = gtk_check_button_new_with_label(_("AC Coupled"));
@@ -978,10 +975,8 @@ static gboolean dialog_select_source(int chan_num)
     * add the notebook to the window
     */
     vert->notebook = gtk_notebook_new();
-    gtk_container_add(GTK_CONTAINER(content_area), vert->notebook);
-#ifdef GTK2
-    gtk_notebook_set_homogeneous_tabs(GTK_NOTEBOOK(vert->notebook), TRUE);
-#endif
+    gtk_box_pack_start(GTK_BOX(GTK_CONTAINER(content_area)),
+            vert->notebook, TRUE, TRUE, 0);
 
     /* text for tab labels */
     tab_label_text[0] = _("Pins");
@@ -996,9 +991,9 @@ static gboolean dialog_select_source(int chan_num)
                 GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
         /* create and set tabs in notebook */
-        hbox = gtk_hbox_new(TRUE, 0);
-        gtk_label_new_in_box(tab_label_text[n], hbox, TRUE, TRUE, 0);
-        gtk_notebook_append_page(GTK_NOTEBOOK(vert->notebook), scrolled_window, hbox);
+        label = gtk_label_new(tab_label_text[n]);
+        gtk_widget_set_size_request(label, 70, -1);
+        gtk_notebook_append_page(GTK_NOTEBOOK(vert->notebook), scrolled_window, label);
 
         /* create a list to hold the data */
         vert->lists[n] = gtk_tree_view_new();
@@ -1146,8 +1141,6 @@ void channel_changed(void)
     gtk_adjustment_set_lower(adj, chan->min_index);
     gtk_adjustment_set_upper(adj, chan->max_index);
     gtk_adjustment_set_value(adj, chan->scale_index);
-    gtk_adjustment_changed(adj);
-    gtk_adjustment_value_changed(adj);
     /* update the channel number and name display */
     snprintf(buf1, BUFLEN, "%2d", vert->selected);
     name = chan->name;
