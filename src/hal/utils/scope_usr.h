@@ -56,23 +56,26 @@ typedef struct {
     int zoom_setting;		/* setting of zoom slider (1-9) */
     double pos_setting;		/* setting of position slider (0.0-1.0) */
     long x0;
+    int width;			/* width in pixels */
+    int height;			/* height in pixels */
     /* widgets for main window */
     GtkWidget *disp_area;
-    GdkGC *disp_context;
+    cairo_t *disp_context;
+    cairo_surface_t *surface;
     GtkWidget *state_label;
     GtkWidget *record_button;
     GtkWidget *record_label;
     GtkWidget *zoom_slider;
-    GtkObject *zoom_adj;
+    GtkAdjustment *zoom_adj;
     GtkWidget *pos_slider;
-    GtkObject *pos_adj;
+    GtkAdjustment *pos_adj;
     GtkWidget *scale_label;
     /* widgets for thread selection dialog */
     GtkWidget *thread_list;
     GtkWidget *thread_name_label;
     GtkWidget *sample_rate_label;
     GtkWidget *sample_period_label;
-    GtkObject *mult_adj;
+    GtkAdjustment *mult_adj;
     GtkWidget *mult_spinbutton;
 } scope_horiz_t;
 
@@ -113,10 +116,10 @@ typedef struct {
     GtkWidget *source_name_button;
     /* widgets for vert info window */
     GtkWidget *scale_slider;
-    GtkObject *scale_adj;
+    GtkAdjustment *scale_adj;
     GtkWidget *scale_label;
     GtkWidget *pos_slider;
-    GtkObject *pos_adj;
+    GtkAdjustment *pos_adj;
     GtkWidget *offset_button;
     GtkWidget *offset_label;
     GtkWidget *readout_label;
@@ -145,10 +148,10 @@ typedef struct {
     GtkWidget *edge_button;
     GtkWidget *edge_label;
     GtkWidget *level_slider;
-    GtkObject *level_adj;
+    GtkAdjustment *level_adj;
     GtkWidget *level_label;
     GtkWidget *pos_slider;
-    GtkObject *pos_adj;
+    GtkAdjustment *pos_adj;
 } scope_trig_t;
 
 
@@ -158,8 +161,8 @@ typedef struct {
 
 typedef struct {
     /* general data */
-    int width;			/* height in pixels */
-    int height;			/* width in pixels */
+    int width;			/* width in pixels */
+    int height;			/* height in pixels */
     double pixels_per_sample;	/* horizontal scaling */
     double horiz_offset;		/* offset in pixels */
     int start_sample;		/* first displayable sample */
@@ -168,15 +171,14 @@ typedef struct {
     GtkWidget *drawing;		/* drawing area for display */
     GtkTooltip *tip;		/* drawing area for display */
     /* drawing objects (GDK) */
-    GdkDrawable *win;		/* the window */
-    GdkColormap *map;		/* the colormap for the window */
-    GdkColor color_bg;		/* background color */
-    GdkColor color_grid;	/* the grid color */
-    GdkColor color_normal[16];	/* the color for normal waveforms */
-    GdkColor color_selected[16];	/* the color for selected waveforms */
-    GdkColor color_baseline;    /* The baseline color */
+    GdkRGBA color_bg;		/* background color */
+    GdkRGBA color_grid;	        /* the grid color */
+    GdkRGBA color_normal[16];	/* the color for normal waveforms */
+    GdkRGBA color_selected[16];	/* the color for selected waveforms */
+    GdkRGBA color_baseline;     /* The baseline color */
 
-    GdkGC *context;		/* graphics context for drawing */
+    cairo_surface_t *surface;
+    cairo_t *context;
     int selected_part;
 } scope_disp_t;
 
@@ -297,4 +299,4 @@ int set_trigger_mode(int mode);
 int set_run_mode(int mode);
 void prepare_scope_restart(void);
 void log_popup(GtkWindow *parent);
-#endif /* HALSC_USR_H */
+#endif /* SCOPE_USR_H */
