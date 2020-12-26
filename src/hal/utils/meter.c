@@ -1,6 +1,6 @@
 /** This file, 'meter.c', is a GUI program that serves as a simple
     meter to look at HAL signals.  It is a user space component and
-    uses GTK 2 or GTK 3 for the GUI code.  It allows you to view one pin,
+    uses GTK 3 for the GUI code.  It allows you to view one pin,
     signal, or parameter, and updates its display about 10 times
     per second.  (It is not a realtime program, and heavy loading
     can temporarily slow or stop the update.)  Clicking on the 'Select'
@@ -257,7 +257,7 @@ int main(int argc, char * argv[])
             G_CALLBACK(gtk_main_quit), NULL);
 
     /* a vbox to hold the displayed value and the pin/sig/param name */
-    vbox = gtk_vbox_new(FALSE, 3);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 3);
     gtk_container_set_border_width(GTK_CONTAINER(vbox), 2);
     gtk_container_add(GTK_CONTAINER(main_window), vbox);
 
@@ -291,10 +291,8 @@ int main(int argc, char * argv[])
 	hbox = gtk_hbox_new_in_box(FALSE, 0, 0, vbox, FALSE, TRUE, 0);
 
 	/* create the buttons and add them to the hbox */
-	button_select = gtk_button_new_with_label(_("Select"));
-	button_exit = gtk_button_new_with_label(_("Exit"));
-	gtk_button_set_use_underline((GtkButton *)button_select, TRUE);
-	gtk_button_set_use_underline((GtkButton *)button_exit, TRUE);
+	button_select = gtk_button_new_with_mnemonic(_("_Select"));
+	button_exit = gtk_button_new_with_mnemonic(_("E_xit"));
 
 	gtk_box_pack_start(GTK_BOX(hbox), button_select, TRUE, TRUE, 4);
 	gtk_box_pack_start(GTK_BOX(hbox), button_exit, TRUE, TRUE, 4);
@@ -607,21 +605,18 @@ static void create_probe_window(probe_t * probe)
     gtk_window_set_title(GTK_WINDOW(probe->window), probe->probe_name);
 
     /* a box to hold everything, add it to window */
-    vbox = gtk_vbox_new(FALSE, 3);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 3);
     gtk_container_set_border_width(GTK_CONTAINER(vbox), 2);
     gtk_container_add(GTK_CONTAINER(probe->window), vbox);
 
     /* create a notebook to hold pin, signal, and parameter list */
     probe->notebook = gtk_notebook_new();
     gtk_box_pack_start(GTK_BOX(vbox), probe->notebook, TRUE, TRUE, 0);
-#ifdef GTK2
-    gtk_notebook_set_homogeneous_tabs(GTK_NOTEBOOK(probe->notebook), TRUE);
-#endif
 
     /* text for tab labels */
-    tab_label_text[0] = _("Pins");
-    tab_label_text[1] = _("Signals");
-    tab_label_text[2] = _("Parameters");
+    tab_label_text[0] = _("_Pins");
+    tab_label_text[1] = _("_Signals");
+    tab_label_text[2] = _("Para_meters");
 
     /* loop to create three identical tabs */
     for (n = 0; n < 3; n++) {
@@ -631,9 +626,9 @@ static void create_probe_window(probe_t * probe)
             GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
         /* create and set tabs in notebook */
-        hbox = gtk_hbox_new(TRUE, 0);
-        gtk_label_new_in_box(tab_label_text[n], hbox, TRUE, TRUE, 0);
-        gtk_notebook_append_page(GTK_NOTEBOOK(probe->notebook), scrolled_window, hbox);
+        label = gtk_label_new_with_mnemonic(tab_label_text[n]);
+        gtk_widget_set_size_request(label, 70, -1);
+        gtk_notebook_append_page(GTK_NOTEBOOK(probe->notebook), scrolled_window, label);
 
         /* create and initalize the list to hold the data */
         probe->lists[n] = gtk_tree_view_new();
@@ -652,8 +647,7 @@ static void create_probe_window(probe_t * probe)
 
     /* create a box and a close button */
     hbox = gtk_hbox_new_in_box(TRUE, 0, 0, vbox, FALSE, TRUE, 0);
-    button_close = gtk_button_new_with_label(_("Close"));
-    gtk_button_set_use_underline((GtkButton *)button_close, TRUE);
+    button_close = gtk_button_new_with_mnemonic(_("_Close"));
     gtk_box_pack_start(GTK_BOX(hbox), button_close, TRUE, TRUE, 4);
 
     /* signals */
