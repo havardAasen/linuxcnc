@@ -771,6 +771,33 @@ static void dialog_realtime_not_running(void)
     }
 }
 
+/* Dialog window to load log file. */
+void open_log_cb(void)
+{
+    GtkWidget *filew;
+    GtkFileChooser *chooser;
+
+    filew = gtk_file_chooser_dialog_new(_("Open log file:"), NULL,
+                                        GTK_FILE_CHOOSER_ACTION_OPEN,
+                                        _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                        _("_Open"), GTK_RESPONSE_ACCEPT, NULL);
+
+    chooser = GTK_FILE_CHOOSER(filew);
+    set_file_filter(chooser, "Text CSV (.csv)", "*.csv");
+
+    if (gtk_dialog_run(GTK_DIALOG(filew)) == GTK_RESPONSE_ACCEPT) {
+        char *filename;
+
+        /* We don't want to sample when we're reading a log file. */
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ctrl_usr->rm_stop_button), TRUE);
+
+        filename = gtk_file_chooser_get_filename(chooser);
+        read_log_file(filename);
+        g_free(filename);
+    }
+    gtk_widget_destroy(filew);
+}
+
 void save_log_cb(GtkWindow *parent)
 {
     scope_vert_t *vert;

@@ -547,9 +547,7 @@ static void define_menubar(GtkWidget *vboxtop) {
 
     fileopendatafile = gtk_menu_item_new_with_mnemonic(_("O_pen Log File"));
     gtk_menu_shell_append(GTK_MENU_SHELL(filemenu), fileopendatafile);
-    g_signal_connect_swapped(fileopendatafile, "activate",
-            G_CALLBACK(menuitem_response), "file/open datafile");
-    gtk_widget_set_sensitive(GTK_WIDGET(fileopendatafile), FALSE); // XXX
+    g_signal_connect(fileopendatafile, "activate", G_CALLBACK(open_log_cb), NULL);
     gtk_widget_show(fileopendatafile);
 
     filesavedatafile = gtk_menu_item_new_with_mnemonic(_("S_ave Log File"));

@@ -250,12 +250,13 @@ void redraw_window(void);
 
 void format_signal_value(char *buf, int buflen, double value);
 
-int read_config_file (char *filename);
-void write_config_file (char *filename);
+int read_config_file(char *filename);
+void write_config_file(char *filename);
 void write_horiz_config(FILE *fp);
 void write_vert_config(FILE *fp);
 void write_trig_config(FILE *fp);
-void write_log_file (char *filename);
+void write_log_file(char *filename);
+void read_log_file(char *filename);
 
 /* the following functions set various parameters, they are normally
    called by the GUI, but can also be called by code reading a file
@@ -282,4 +283,5 @@ int set_trigger_mode(int mode);
 int set_run_mode(int mode);
 void prepare_scope_restart(void);
 void save_log_cb(GtkWindow *parent);
+void open_log_cb(void);
 #endif /* SCOPE_USR_H */

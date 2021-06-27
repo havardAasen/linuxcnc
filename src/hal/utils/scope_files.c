@@ -335,6 +335,20 @@ void write_log_file(char *filename)
     printf("Log file '%s' written.\n", filename);
 }
 
+void read_log_file(char *filename)
+{
+    FILE *fp;
+
+    fp = fopen(filename, "r");
+    if (fp == NULL) {
+        fprintf(stderr, "ERROR: Log file '%s' could not be opened.\n", filename);
+        return;
+    }
+
+    fclose(fp);
+    printf("Log file '%s' opened.\n", filename);
+}
+
 /* format the data and print it */
 static void write_sample(FILE *fp, scope_data_t *dptr, hal_type_t type)
 {
