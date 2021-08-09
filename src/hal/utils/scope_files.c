@@ -100,6 +100,7 @@ typedef struct {
   char * (*handler)(void *arg);
 } cmd_lut_entry_t;
 
+#define LINE_LEN 1024
 
 /***********************************************************************
 *                         GLOBAL VARIABLES                             *
@@ -139,6 +140,10 @@ static char *tpos_cmd(void * arg);
 static char *tpolar_cmd(void * arg);
 static char *tmode_cmd(void * arg);
 static char *rmode_cmd(void * arg);
+
+static int read_sample_rate(char *str);
+static int count_rows(FILE *fp);
+static int count_col(FILE *fp);
 
 /***********************************************************************
 *                         LOCAL VARIABLES                              *
@@ -337,16 +342,97 @@ void write_log_file(char *filename)
 
 void read_log_file(char *filename)
 {
+    int i, j;
+    int col;
+    int line_num = 0;
+    int lines;
+    int sample_rate = 0;
+    char buffer[LINE_LEN];
+    char *field;
+    char** headers;
+    double** values;
+
     FILE *fp;
 
     fp = fopen(filename, "r");
     if (fp == NULL) {
-        fprintf(stderr, "ERROR: Log file '%s' could not be opened.\n", filename);
+        fprintf(stderr, "ERROR: File '%s' could not be opened\n", filename);
         return;
     }
 
+    col = count_col(fp);
+    lines = count_rows(fp);
+    rewind(fp);
+
+    headers = malloc(sizeof(char*) * col);
+    values = malloc(sizeof(double*) * col);
+    for (i = 0; i < col; i++) {
+        headers[i] = malloc(sizeof(char)* HAL_NAME_LEN);
+        values[i] = calloc(lines + 1, sizeof(double));
+    }
+
+    if (headers == NULL || values == NULL) {
+        fprintf(stderr, "ERROR: Could not allocate memory\n");
+        return;
+    }
+
+    /* parse header and count columns. */
+    while (fgets(buffer, LINE_LEN, fp) != NULL) {
+        line_num++;
+        col = 0;
+        field = strtok(buffer, "; \n");
+
+        /* Get the sample rate stored in the first line. */
+        if (line_num == 1) {
+            int elem = 0;
+            while (field != NULL) {
+                if (elem == 4) {
+                    sample_rate = read_sample_rate(field);
+                }
+                field = strtok(NULL, " \n");
+                elem++;
+            }
+            if (sample_rate == -1) {
+                fprintf(stderr, "ERROR: Could not read sample rate\n");
+                return;
+            }
+        }
+
+        /* Parse the header stored in the second line. */
+        if (line_num == 2) {
+            while (field != NULL) {
+                strncpy(headers[col], field, HAL_NAME_LEN);
+                field = strtok(NULL, ";\n");
+                col++;
+            }
+        }
+
+        /* Parse all values from csv file and store them as 'double'. */
+        while (field != NULL) {
+            values[col][line_num - 3] = atof(field);
+            field = strtok(NULL, ";\n");
+            col++;
+        }
+    }
     fclose(fp);
-    printf("Log file '%s' opened.\n", filename);
+
+    for (i = 0; i < col; i++) {
+        printf("%20s ", headers[i]);
+    }
+    printf("\n");
+    for (j = 0; j < lines; j++) {
+        for (i = 0; i < col; i++) {
+            printf("%20f ", values[i][j]);
+        }
+        printf("\n");
+    }
+
+    for (i = 0; i < col; i++) {
+        free(headers[i]);
+        free(values[i]);
+    }
+    free(headers);
+    free(values);
 }
 
 /* format the data and print it */
@@ -720,3 +806,54 @@ static char *rmode_cmd(void * arg)
     return NULL;
 }
 
+/* Convert string to int. */
+static int read_sample_rate(char *str)
+{
+    int val;
+    char *endptr;
+
+    val = strtol(str, &endptr, 10);
+    if (str == endptr) {
+        return -1;
+    }
+    return val;
+}
+
+/* Count rows in file. */
+static int count_rows(FILE *fp)
+{
+    int lines = 0;
+    int ch;
+
+    while (!feof(fp)) {
+        ch = fgetc(fp);
+        if (ch == '\n') {
+            lines++;
+        }
+    }
+    return lines + 1;
+}
+
+/* Count columns in line 2, which contains the headers. */
+static int count_col(FILE *fp)
+{
+    int col = 0;
+    int line_num = 0;
+    char buffer[LINE_LEN];
+    char *field;
+
+    while (fgets(buffer, LINE_LEN, fp) != NULL) {
+        line_num++;
+        field = strtok(buffer, "; \n");
+        if (line_num == 2) {
+            while (field != NULL) {
+                field = strtok(NULL, ";\n");
+                col++;
+            }
+        }
+        if (line_num == 3) {
+            break;
+        }
+    }
+    return col;
+}
