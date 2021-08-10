@@ -95,6 +95,7 @@ static void channel_off_button(GtkWidget * widget, gpointer gdata);
 static void offset_button(GtkWidget * widget, gpointer gdata);
 static gboolean dialog_set_offset(int chan_num);
 static void scale_changed(GtkAdjustment * adj, gpointer gdata);
+static void offset_toggled(GtkToggleButton *btn, struct offset_data *data);
 static void offset_changed(GtkEditable * editable, struct offset_data *);
 static void offset_activated(GtkEntry *entry, GtkWidget *dialog);
 static void pos_changed(GtkAdjustment * adj, gpointer gdata);
@@ -747,7 +748,7 @@ static gboolean dialog_set_offset(int chan_num)
 
     /* signals */
     g_signal_connect(vert->offset_ac, "toggled",
-	G_CALLBACK(offset_changed), &data);
+	G_CALLBACK(offset_toggled), &data);
     g_signal_connect(vert->offset_entry, "changed",
 	G_CALLBACK(offset_changed), &data);
     g_signal_connect(vert->offset_entry, "activate",
@@ -767,14 +768,16 @@ static gboolean dialog_set_offset(int chan_num)
     return FALSE;
 }
 
+/* Determine if the user can edit the text when 'AC Coupled' is toggled. */
+static void offset_toggled(GtkToggleButton *btn, struct offset_data *data)
+{
+    data->ac_coupled = gtk_toggle_button_get_active(btn);
+    gtk_widget_set_sensitive(ctrl_usr->vert.offset_entry, !data->ac_coupled);
+}
+
 static void offset_changed(GtkEditable * editable, struct offset_data *data)
 {
     const char *text;
-
-    /* maybe user hit "ac coupled" button" */
-    data->ac_coupled =
-      gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ctrl_usr->vert.offset_ac));
-    gtk_widget_set_sensitive(ctrl_usr->vert.offset_entry, !data->ac_coupled);
 
     /* maybe user typed something, save it in the buffer */
     text = gtk_entry_get_text(GTK_ENTRY(ctrl_usr->vert.offset_entry));
