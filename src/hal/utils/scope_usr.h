@@ -182,6 +182,12 @@ typedef struct {
     int selected_part;
 } scope_disp_t;
 
+/* this struct holds data relating to logging */
+typedef struct{
+    char** headers;     /* read in from log file, needs to be free'd. */
+    double** values;    /* read in from log file, needs to be free'd.' */
+} scope_log_t;
+
 /* this is the master user space control structure */
 
 typedef enum { STOP = 0, NORMAL, SINGLE, ROLL } scope_run_mode_t;
@@ -217,6 +223,7 @@ typedef struct {
     scope_vert_t vert;		/* vertical control data */
     scope_trig_t trig;		/* triggering data */
     scope_disp_t disp;		/* display data */
+    scope_log_t log;            /* logging preferences */
 } scope_usr_control_t;
 
 /***********************************************************************

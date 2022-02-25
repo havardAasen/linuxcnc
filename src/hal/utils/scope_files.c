@@ -342,6 +342,9 @@ void write_log_file(char *filename)
 
 void read_log_file(char *filename)
 {
+    scope_log_t *log;
+    log = &(ctrl_usr->log);
+
     int i, j;
     int col;
     int line_num = 0;
@@ -349,8 +352,6 @@ void read_log_file(char *filename)
     int sample_rate = 0;
     char buffer[LINE_LEN];
     char *field;
-    char** headers;
-    double** values;
 
     FILE *fp;
 
@@ -364,14 +365,14 @@ void read_log_file(char *filename)
     lines = count_rows(fp);
     rewind(fp);
 
-    headers = malloc(sizeof(char*) * col);
-    values = malloc(sizeof(double*) * col);
+    log->headers = malloc(sizeof(HAL_NAME_LEN) * col);
+    log->values = malloc(sizeof(double*) * col);
     for (i = 0; i < col; i++) {
-        headers[i] = malloc(sizeof(char)* HAL_NAME_LEN);
-        values[i] = calloc(lines + 1, sizeof(double));
+        //log->headers[i] = malloc(sizeof(char)* HAL_NAME_LEN);
+        log->values[i] = calloc(lines + 1, sizeof(double));
     }
 
-    if (headers == NULL || values == NULL) {
+    if (log->headers == NULL || log->values == NULL) {
         fprintf(stderr, "ERROR: Could not allocate memory\n");
         return;
     }
@@ -401,7 +402,7 @@ void read_log_file(char *filename)
         /* Parse the header stored in the second line. */
         if (line_num == 2) {
             while (field != NULL) {
-                strncpy(headers[col], field, HAL_NAME_LEN);
+                strncpy(log->headers[col], field, HAL_NAME_LEN);
                 field = strtok(NULL, ";\n");
                 col++;
             }
@@ -409,30 +410,32 @@ void read_log_file(char *filename)
 
         /* Parse all values from csv file and store them as 'double'. */
         while (field != NULL) {
-            values[col][line_num - 3] = atof(field);
+            log->values[col][line_num - 3] = atof(field);
             field = strtok(NULL, ";\n");
             col++;
         }
     }
     fclose(fp);
 
+    //TODO Debug statements
     for (i = 0; i < col; i++) {
-        printf("%20s ", headers[i]);
+        printf("%20s ", log->headers[i]);
     }
     printf("\n");
     for (j = 0; j < lines; j++) {
         for (i = 0; i < col; i++) {
-            printf("%20f ", values[i][j]);
+            printf("%20f ", log->values[i][j]);
         }
         printf("\n");
     }
+    //TODO end debug statements.
 
     for (i = 0; i < col; i++) {
-        free(headers[i]);
-        free(values[i]);
+        //free(log->headers[i]);
+        free(log->values[i]);
     }
-    free(headers);
-    free(values);
+    free(log->headers);
+    free(log->values);
 }
 
 /* format the data and print it */
