@@ -1,0 +1,178 @@
+include(buildcomponent)
+
+build_component(NAME hal_rt SOURCES ../hal_lib.c)
+build_component(NAME scope_rt SOURCES ../utils/scope_rt.c)
+build_component(NAME boss_plc SOURCES boss_plc.c)
+build_component(NAME debounce SOURCES debounce.c)
+build_component(NAME encoder SOURCES encoder.c)
+build_component(NAME counter SOURCES counter.c)
+build_component(NAME encoder_ratio SOURCES encoder_ratio.c)
+build_component(NAME stepgen SOURCES stepgen.c)
+build_component(NAME lcd SOURCES lcd.c)
+build_component(NAME matrix_kb SOURCES matrix_kb.c)
+build_component(NAME mux_generic SOURCES mux_generic.c)
+build_component(NAME pwmgen SOURCES pwmgen.c)
+build_component(NAME siggen SOURCES siggen.c)
+build_component(NAME pid SOURCES pid.c)
+build_component(NAME threads SOURCES threads.c)
+build_component(NAME supply SOURCES supply.c)
+build_component(NAME sim_encoder SOURCES sim_encoder.c)
+build_component(NAME weighted_sum SOURCES weighted_sum.c)
+build_component(NAME watchdog SOURCES watchdog.c)
+build_component(NAME modmath SOURCES modmath.c)
+build_component(NAME streamer SOURCES streamer.c)
+build_component(NAME sampler SOURCES sampler.c)
+
+#kinematics
+build_component(NAME trivkins SOURCES ../../emc/kinematics/trivkins.c ../../emc/kinematics/kins_util.c)
+build_component(NAME maxkins SOURCES ../../emc/kinematics/maxkins.c)
+build_component(NAME rotatekins SOURCES ../../emc/kinematics/rotatekins.c)
+build_component(NAME tripodkins SOURCES ../../emc/kinematics/tripodkins.c)
+build_component(NAME corexykins SOURCES ../../emc/kinematics/corexykins.c)
+build_component(NAME lineardeltakins SOURCES ../../emc/kinematics/lineardeltakins.c)
+build_component(NAME rotarydeltakins SOURCES ../../emc/kinematics/rotarydeltakins.c)
+build_component(NAME rosekins SOURCES ../../emc/kinematics/rosekins.c)
+build_component(NAME scorbot-kins SOURCES ../../emc/kinematics/scorbot-kins.c)
+build_component(NAME pentakins SOURCES ../../emc/kinematics/pentakins.c ../../libnml/posemath/_posemath.c ../../libnml/posemath/sincos.c)
+
+build_component(NAME motmod SOURCES ../../emc/kinematics/cubic.c
+		../../emc/tp/tc.c
+		../../emc/tp/tcq.c
+		../../emc/tp/tp.c
+		../../emc/tp/spherical_arc.c
+		../../emc/tp/blendmath.c
+		../../emc/motion/motion.c
+		../../emc/motion/command.c
+		../../emc/motion/control.c
+		../../emc/motion/homing.c
+		../../emc/motion/simple_tp.c
+		../../emc/motion/emcmotutil.c
+		../../emc/motion/stashf.c
+		../../emc/motion/dbuf.c
+		../../emc/nml_intf/emcpose.c
+		../../libnml/posemath/_posemath.c
+		../../libnml/posemath/sincos.c
+		)
+
+#todo: userkfuncs
+
+build_component(NAME classicladder_rt SOURCES
+		../classicladder/module_hal.c
+		../classicladder/arithm_eval.c
+		../classicladder/arrays.c
+		../classicladder/calc.c
+		../classicladder/calc_sequential.c
+		../classicladder/manager.c
+		../classicladder/symbols.c
+		../classicladder/vars_access.c)
+
+compile_component(abs_s32 abs_s32.comp ON)
+compile_component(abs abs.comp ON)
+compile_component(and2 and2.comp ON)
+compile_component(axistest axistest.comp ON)
+compile_component(bin2gray bin2gray.comp ON)
+compile_component(biquad biquad.comp ON)
+compile_component(bitslice bitslice.comp ON)
+compile_component(bitwise bitwise.comp ON)
+compile_component(bldc bldc.comp ON)
+compile_component(blend blend.comp ON)
+compile_component(carousel carousel.comp ON)
+compile_component(charge_pump charge_pump.comp ON)
+compile_component(clarke2 clarke2.comp ON)
+compile_component(clarke3 clarke3.comp ON)
+compile_component(clarkeinv clarkeinv.comp ON)
+compile_component(comp comp.comp ON)
+compile_component(constant constant.comp ON)
+compile_component(corexy_by_hal corexy_by_hal.comp ON)
+compile_component(dbounce dbounce.comp ON)
+compile_component(ddt ddt.comp ON)
+compile_component(deadzone deadzone.comp ON)
+compile_component(demux demux.comp ON)
+compile_component(differential differential.comp ON)
+compile_component(edge edge.comp ON)
+compile_component(eoffset_per_angle eoffset_per_angle.comp ON)
+compile_component(estop_latch estop_latch.comp ON)
+compile_component(feedcomp feedcomp.comp ON)
+compile_component(filter_kalman filter_kalman.comp ON)
+compile_component(flipflop flipflop.comp ON)
+compile_component(gantry gantry.comp ON)
+compile_component(gearchange gearchange.comp ON)
+compile_component(gray2bin gray2bin.comp ON)
+compile_component(histobins histobins.comp ON)
+compile_component(hypot hypot.comp ON)
+compile_component(ilowpass ilowpass.comp ON)
+compile_component(integ integ.comp ON)
+compile_component(invert invert.comp ON)
+compile_component(joyhandle joyhandle.comp ON)
+compile_component(knob2float knob2float.comp ON)
+compile_component(latencybins latencybins.comp ON)
+compile_component(limit1 limit1.comp ON)
+compile_component(limit2 limit2.comp ON)
+compile_component(limit3 limit3.comp ON)
+compile_component(lincurve lincurve.comp ON)
+compile_component(logic logic.comp ON)
+compile_component(lowpass lowpass.comp ON)
+compile_component(lut5 lut5.comp ON)
+compile_component(maj3 maj3.comp ON)
+compile_component(match8 match8.comp ON)
+compile_component(max31855 max31855.comp ON)
+compile_component(mesa_pktgyro_test mesa_pktgyro_test.comp ON)
+compile_component(message message.comp ON)
+compile_component(minmax minmax.comp ON)
+compile_component(moveoff moveoff.comp ON)
+compile_component(mult2 mult2.comp ON)
+compile_component(multiclick multiclick.comp ON)
+compile_component(multiswitch multiswitch.comp ON)
+compile_component(mux16 mux16.comp ON)
+compile_component(mux2 mux2.comp ON)
+compile_component(mux4 mux4.comp ON)
+compile_component(mux8 mux8.comp ON)
+compile_component(near near.comp ON)
+compile_component(not not.comp ON)
+compile_component(offset offset.comp ON)
+compile_component(ohmic ohmic.comp ON)
+compile_component(oneshot oneshot.comp ON)
+compile_component(or2 or2.comp ON)
+compile_component(orient orient.comp ON)
+compile_component(plasmac plasmac.comp ON)
+compile_component(sample_hold sample_hold.comp ON)
+compile_component(scale scale.comp ON)
+compile_component(select8 select8.comp ON)
+compile_component(sim_axis_hardware sim_axis_hardware.comp ON)
+compile_component(sim_home_switch sim_home_switch.comp ON)
+compile_component(sim_matrix_kb sim_matrix_kb.comp ON)
+compile_component(sim_parport sim_parport.comp ON)
+compile_component(sim_spindle sim_spindle.comp ON)
+compile_component(simple_tp simple_tp.comp ON)
+compile_component(sphereprobe sphereprobe.comp ON)
+compile_component(spindle_monitor spindle_monitor.comp ON)
+compile_component(spindle spindle.comp ON)
+compile_component(steptest steptest.comp ON)
+compile_component(sum2 sum2.comp ON)
+compile_component(thc thc.comp ON)
+compile_component(thcud thcud.comp ON)
+compile_component(threadtest threadtest.comp ON)
+compile_component(time time.comp ON)
+compile_component(timedelay timedelay.comp ON)
+compile_component(timedelta timedelta.comp ON)
+compile_component(toggle toggle.comp ON)
+compile_component(toggle2nist toggle2nist.comp ON)
+compile_component(tristate_bit tristate_bit.comp ON)
+compile_component(tristate_float tristate_float.comp ON)
+compile_component(updown updown.comp ON)
+compile_component(userkins userkins.comp ON)
+compile_component(wcomp wcomp.comp ON)
+compile_component(xhc_hb04_util xhc_hb04_util.comp ON)
+compile_component(xor2 xor2.comp ON)
+
+generate_conv_component(conv_float_s32 float s32 "\"\"" -2147483647-1 2147483647)
+generate_conv_component(conv_float_u32 float u32 "\"\"" 2147483647 "")
+generate_conv_component(conv_bit_s32 bit s32 // "" "")
+generate_conv_component(conv_bit_u32 bit u32 // "" "")
+generate_conv_component(conv_bit_float bit float // "" "")
+generate_conv_component(conv_s32_float s32 float // "" "")
+generate_conv_component(conv_s32_bit s32 bit "\"\"" 0 1)
+generate_conv_component(conv_s32_u32 s32 u32 "\"\"" 0 0)
+generate_conv_component(conv_u32_float u32 float // "" "")
+generate_conv_component(conv_u32_bit u32 bit "\"\"" -1 1)
+generate_conv_component(conv_u32_s32 u32 s32 "\"\"" -1 2147483647)

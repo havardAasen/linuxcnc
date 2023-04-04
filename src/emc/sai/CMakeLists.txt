@@ -1,0 +1,19 @@
+add_executable(rs274
+        saicanon.cc
+        driver.cc
+        dummyemcstat.cc
+        ../task/taskmodule.cc
+        ../task/taskclass.cc)
+target_link_libraries(rs274
+        PRIVATE
+        Python3::Python
+        readline
+        rs274ngc
+        linuxcnc
+        inifile
+        pythonplugin
+        tooldata
+        hal
+        nml
+        nmlintf)
+get_uspace_config(rs274)

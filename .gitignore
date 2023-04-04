@@ -58,3 +58,6 @@ docs/help/hu/*
 docs/help/nb/*
 docs/help/vi/*
 docs/help/zh_CN/*
+.idea
+cmake-build-*
+tests/build/compilecomponent/build/*
