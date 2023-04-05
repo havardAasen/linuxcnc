@@ -1,22 +1,17 @@
 set(CMAKE_INCLUDE_CURRENT_DIR True)
 
-set(LIBHAL_SOURCES
-        hal_lib.c
-        )
-
-add_library(hal SHARED ${LIBHAL_SOURCES})
+add_library(hal SHARED hal_lib.c)
 set_property(TARGET hal PROPERTY POSITION_INDEPENDENT_CODE ON)
 get_uspace_config(hal)
-target_link_libraries(hal PRIVATE ulapi)
+target_include_directories(hal PUBLIC .)
+target_link_libraries(hal
+        PRIVATE
+        ulapi)
 
 set_target_properties(hal PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 
-set(LIBHALMODULE_SOURCES
-        halmodule.cc
-        )
-
-add_library(_hal SHARED ${LIBHALMODULE_SOURCES})
+add_library(_hal SHARED halmodule.cc)
 target_link_libraries(_hal PRIVATE hal)
 target_include_directories(_hal PUBLIC Python3::Python)
 target_link_libraries(_hal
@@ -24,18 +19,19 @@ target_link_libraries(_hal
         Threads::Threads
         Python3::Python
         rt
+        ulapi
         )
 set_target_properties(_hal PROPERTIES PREFIX "")
 get_uspace_config(_hal)
 
-set(HALCMD_SOURCES
+add_executable(halcmd
         utils/halcmd.c
         utils/halcmd_commands.cc
         utils/halcmd_main.c
         utils/halcmd_completion.c
         )
-add_executable(halcmd ${HALCMD_SOURCES})
 target_include_directories(halcmd
+        PUBLIC .
         PRIVATE
         ${TCL_INCLUDE_PATH}
         ${READLINE_INCLUDE}
@@ -46,7 +42,8 @@ target_link_libraries(halcmd
         ${READLINE_LIBRARIES}
         inifile
         hal
-        rt)
+        rt
+        ulapi)
 get_uspace_config(halcmd)
 
 set(HALSH_SOURCES
@@ -65,19 +62,24 @@ target_link_libraries(halsh
         ${READLINE_LIBRARIES}
         ${TCL_LIBRARY}
         hal
-        inifile)
+        inifile
+        ulapi)
 get_uspace_config(halsh)
 
 add_executable(halstreamer components/streamer_usr.c)
-target_link_libraries(halstreamer PRIVATE hal)
+target_link_libraries(halstreamer PRIVATE hal ulapi)
 get_uspace_config(halstreamer)
 
 add_executable(halsampler components/sampler_usr.c)
-target_link_libraries(halsampler PRIVATE hal)
+target_link_libraries(halsampler PRIVATE hal ulapi)
 get_uspace_config(halsampler)
 
 add_executable(halrmt utils/halrmt.c)
-target_link_libraries(halrmt PRIVATE hal)
+target_link_libraries(halrmt
+        PRIVATE
+        hal
+        ulapi
+        inifile)
 get_uspace_config(halrmt)
 
 set(HALMETER_SOURCES
@@ -95,10 +97,11 @@ target_link_libraries(halmeter
         hal
         ${GTK3_LIBRARIES}
         ${Intl_LIBRARIES}
+        ulapi
         )
 get_uspace_config(halmeter)
 
-set(HALSCOPE_SOURCES
+add_executable(halscope
         utils/scope.c
         utils/scope_horiz.c
         utils/scope_vert.c
@@ -107,7 +110,6 @@ set(HALSCOPE_SOURCES
         utils/scope_files.c
         utils/miscgtk.c
         )
-add_executable(halscope ${HALSCOPE_SOURCES})
 target_include_directories(halscope
         PRIVATE
         ${GTK3_INCLUDE_DIRS}
@@ -119,23 +121,20 @@ target_link_libraries(halscope
         m
         ${GTK3_LIBRARIES}
         ${Intl_LIBRARIES}
+        ulapi
         )
 get_uspace_config(halscope)
 
 if(USE_RTAI)
-    set(PCIWRITE_SOURCES
+    add_executable(pci_write
             utils/pci_write.c
             utils/upci.c
             )
 
-    add_executable(pci_write ${PCIWRITE_SOURCES})
-
-    set(PCIREAD_SOURCES
+    add_executable(pci_read
             utils/pci_read.c
             utils/upci.c
             )
-
-    add_executable(pci_read ${PCIREAD_SOURCES})
 endif()
 
 add_custom_command(OUTPUT halcompile

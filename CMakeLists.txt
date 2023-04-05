@@ -22,6 +22,10 @@ find_package(Intl REQUIRED)
 
 find_package(Epoxy REQUIRED)
 
+# for config.h in src/ folder
+include_directories(src)
+
+# slightly different locations for TIRPC in linux / bsd
 if(${CMAKE_SYSTEM} MATCHES "Linux")
     find_package(TIRPC REQUIRED)
 else()

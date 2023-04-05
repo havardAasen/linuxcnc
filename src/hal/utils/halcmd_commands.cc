@@ -1097,7 +1097,9 @@ int do_loadrt_cmd(char *mod_name, char *args[])
 #if defined(RTAPI_USPACE)
     argv[m++] = "-Wn";
     argv[m++] = mod_name;
-    argv[m++] = EMC2_BIN_DIR "/rtapi_app";
+    char path[PATH_MAX];
+    snprintf(path, sizeof(path), "%s/rtapi_app", EMC2_BIN_DIR);
+    argv[m++] = path;
     argv[m++] = "load";
     argv[m++] = mod_name;
     /* loop thru remaining arguments */
@@ -1362,7 +1364,9 @@ static int unloadrt_comp(char *mod_name)
     const char *argv[4];
 
 #if defined(RTAPI_USPACE)
-    argv[0] = EMC2_BIN_DIR "/rtapi_app";
+    char path[PATH_MAX];
+    snprintf(path, sizeof(path), "%s/rtapi_app", EMC2_BIN_DIR);
+    argv[0] = path;
     argv[1] = "unload";
 #else
     argv[0] = EMC2_BIN_DIR "/linuxcnc_module_helper";

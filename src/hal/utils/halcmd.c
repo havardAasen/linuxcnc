@@ -43,7 +43,7 @@
 */
 
 #include "config.h"
-#include "emc/linuxcnc.h"
+#include "linuxcnc.h"
 
 #ifndef NO_INI
 #include "inifile.h"		/* iniFind() from libnml */

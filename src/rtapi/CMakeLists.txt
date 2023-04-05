@@ -41,7 +41,8 @@ if(USE_PREEMPT_RT)
     target_link_libraries(rtapi_app
             Threads::Threads
             ${CMAKE_DL_LIBS}
-            rt)
+            rt
+            hal)
     target_link_options(rtapi_app PRIVATE -rdynamic)
     target_compile_definitions(rtapi_app PRIVATE SIM RTAPI)
 
@@ -55,7 +56,10 @@ if(USE_PREEMPT_RT)
     endif(BUILD_UDEV)
 
     add_library(ulapi uspace_ulapi.c)
-    target_include_directories(ulapi PUBLIC .)
+    target_include_directories(ulapi
+            PUBLIC .)
+    target_include_directories(ulapi
+            PRIVATE ..)
     get_uspace_config(ulapi)
     set_property(TARGET ulapi PROPERTY POSITION_INDEPENDENT_CODE ON)
 

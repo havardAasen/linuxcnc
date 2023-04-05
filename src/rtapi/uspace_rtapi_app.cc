@@ -40,9 +40,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
-#ifdef HAVE_SYS_IO_H
 #include <sys/io.h>
-#endif
 #include <sys/resource.h>
 #include <sys/mman.h>
 #ifdef __linux__
@@ -520,7 +518,7 @@ int main(int argc, char **argv) {
             fprintf(stderr,
                 "Refusing to run as root without fallback UID specified\n"
                 "To run under a debugger with I/O, use e.g.,\n"
-                "    sudo env RTAPI_UID=`id -u` RTAPI_FIFO_PATH=$HOME/.rtapi_fifo gdb " EMC2_BIN_DIR "/rtapi_app\n");
+                "    sudo env RTAPI_UID=`id -u` RTAPI_FIFO_PATH=$HOME/.rtapi_fifo gdb %s/rtapi_app\n", EMC2_BIN_DIR);
             exit(1);
         }
         if (setreuid(fallback_uid, 0) != 0) { perror("setreuid"); abort(); }
@@ -805,11 +803,15 @@ static RtapiApp *makeApp()
     }
     WithRoot r;
     void *dll = nullptr;
+    char path[PATH_MAX];
+
     if(detect_xenomai()) {
-        dll = dlopen(EMC2_HOME "/lib/libuspace-xenomai.so.0", RTLD_NOW);
+        snprintf(path, sizeof(path), "%s/lib/libuspace-xenomai.so.0", EMC2_HOME);
+        dll = dlopen(path, RTLD_NOW);
         if(!dll) fprintf(stderr, "dlopen: %s\n", dlerror());
     } else if(detect_rtai()) {
-        dll = dlopen(EMC2_HOME "/lib/libuspace-rtai.so.0", RTLD_NOW);
+        snprintf(path, sizeof(path), "%s/lib/libuspace-rtai.so.0", EMC2_HOME);
+        dll = dlopen(path, RTLD_NOW);
         if(!dll) fprintf(stderr, "dlopen: %s\n", dlerror());
     }
     if(dll)
