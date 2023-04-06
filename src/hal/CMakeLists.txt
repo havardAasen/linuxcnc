@@ -40,7 +40,7 @@ target_link_libraries(halcmd
         PRIVATE
         ${TCL_LIBRARY}
         ${READLINE_LIBRARIES}
-        inifile
+        libnml_inifile
         hal
         rt
         ulapi)
@@ -62,7 +62,7 @@ target_link_libraries(halsh
         ${READLINE_LIBRARIES}
         ${TCL_LIBRARY}
         hal
-        inifile
+        libnml_inifile
         ulapi)
 get_uspace_config(halsh)
 
@@ -79,7 +79,7 @@ target_link_libraries(halrmt
         PRIVATE
         hal
         ulapi
-        inifile)
+        libnml_inifile)
 get_uspace_config(halrmt)
 
 set(HALMETER_SOURCES

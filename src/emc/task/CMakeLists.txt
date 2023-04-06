@@ -1,23 +1,27 @@
-add_executable(linuxcncsvr emcsvr.cc)
-target_link_libraries(linuxcncsvr PRIVATE hal nml nmlintf inifile)
+add_executable(linuxcncsvr
+        emcsvr.cc
+        )
+target_link_libraries(linuxcncsvr
+        PRIVATE
+        hal
+        nml
+        nmlintf
+        inifile)
 get_uspace_config(linuxcncsvr)
 
-set(MILL_SOURCES
-        ../motion/emcmotglb.c
-        ../task/emctask.cc
-        ../task/emccanon.cc
-        ../task/emctaskmain.cc
-        ../motion/usrmotintf.cc
-        ../motion/emcmotutil.c
-        ../task/taskintf.cc
-        ../motion/dbuf.c
-        ../motion/stashf.c
-        ../task/taskmodule.cc
-        ../task/taskclass.cc
-        ../task/backtrace.cc)
-add_executable(milltask ${MILL_SOURCES})
+
+add_executable(milltask
+        emctask.cc
+        emccanon.cc
+        emctaskmain.cc
+        taskintf.cc
+        taskmodule.cc
+        taskclass.cc
+        backtrace.cc
+        )
 target_link_libraries(milltask
         PRIVATE
+        motion_task
         Boost::${BOOSTPYTHON}
         hal
         nml
@@ -27,5 +31,7 @@ target_link_libraries(milltask
         pythonplugin
         posemath
         rs274ngc
-        tooldata)
+        tooldata
+        )
 get_uspace_config(milltask)
+

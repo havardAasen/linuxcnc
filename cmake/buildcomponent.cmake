@@ -1,9 +1,12 @@
 
 function(build_component)
-    cmake_parse_arguments(PARSE_ARGV 0 "BUILD_COMPONENT" "" "NAME" "SOURCES")
+    cmake_parse_arguments(PARSE_ARGV 0 "BUILD_COMPONENT" "" "NAME" "SOURCES;LIBS")
 
     set(name ${BUILD_COMPONENT_NAME})
     add_library(obj-${name} OBJECT ${BUILD_COMPONENT_SOURCES})
+    if(DEFINED BUILD_COMPONENT_LIBS)
+        target_link_libraries(obj-${name} PRIVATE ${BUILD_COMPONENT_LIBS})
+    endif()
     set_property(TARGET obj-${name} PROPERTY POSITION_INDEPENDENT_CODE ON)
     #    target_compile_options(obj-${name} PRIVATE -rdynamic)
     target_compile_definitions(obj-${name} PRIVATE RTAPI USPACE __MODULE__)
@@ -80,7 +83,7 @@ function(compile_component name src relative)
 		    DEPENDS ${src})
     endif()
 
-    build_component(NAME ${name} SOURCES ${SRC_NAME})
+    build_component(NAME ${name} SOURCES ${SRC_NAME} LIBS ulapi hal)
 endfunction()
 
 function(generate_conv_component name typ1 typ2 foo bar baz)

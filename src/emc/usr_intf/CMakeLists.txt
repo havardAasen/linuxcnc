@@ -34,7 +34,7 @@ target_include_directories(linuxcnc
         pythonplugin
         nml
         nmlintf
-        inifile)
+        emc_inifile)
 get_uspace_config(linuxcnc)
 
 add_executable(linuxcncrsh ${EMCRSH_SOURCES})
@@ -42,7 +42,7 @@ target_link_libraries(linuxcncrsh
         PRIVATE
         nml
         nmlintf
-        inifile
+        emc_inifile
         halsh
         ulapi)
 get_uspace_config(linuxcncrsh)
@@ -52,7 +52,7 @@ target_link_libraries(schedrmt
         PRIVATE
         nml
         nmlintf
-        inifile
+        emc_inifile
         halsh
         ulapi)
 get_uspace_config(schedrmt)
@@ -62,7 +62,7 @@ target_link_libraries(linuxcnclcd
         PRIVATE
         nml
         nmlintf
-        inifile
+        emc_inifile
         halsh
         ulapi)
 get_uspace_config(linuxcnclcd)
@@ -72,7 +72,7 @@ target_link_libraries(halui
         PRIVATE
         nml
         nmlintf
-        inifile
+        emc_inifile
         halsh
         ulapi
         hal

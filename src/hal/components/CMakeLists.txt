@@ -1,41 +1,43 @@
 include(buildcomponent)
 
-build_component(NAME hal_rt SOURCES ../hal_lib.c)
-build_component(NAME scope_rt SOURCES ../utils/scope_rt.c)
-build_component(NAME boss_plc SOURCES boss_plc.c)
-build_component(NAME debounce SOURCES debounce.c)
-build_component(NAME encoder SOURCES encoder.c)
-build_component(NAME counter SOURCES counter.c)
-build_component(NAME encoder_ratio SOURCES encoder_ratio.c)
-build_component(NAME stepgen SOURCES stepgen.c)
-build_component(NAME lcd SOURCES lcd.c)
-build_component(NAME matrix_kb SOURCES matrix_kb.c)
-build_component(NAME mux_generic SOURCES mux_generic.c)
-build_component(NAME pwmgen SOURCES pwmgen.c)
-build_component(NAME siggen SOURCES siggen.c)
-build_component(NAME pid SOURCES pid.c)
-build_component(NAME threads SOURCES threads.c)
-build_component(NAME supply SOURCES supply.c)
-build_component(NAME sim_encoder SOURCES sim_encoder.c)
-build_component(NAME weighted_sum SOURCES weighted_sum.c)
-build_component(NAME watchdog SOURCES watchdog.c)
-build_component(NAME modmath SOURCES modmath.c)
-build_component(NAME streamer SOURCES streamer.c)
-build_component(NAME sampler SOURCES sampler.c)
+build_component(NAME hal_rt SOURCES ../hal_lib.c LIBS ulapi hal)
+build_component(NAME scope_rt SOURCES ../utils/scope_rt.c LIBS ulapi hal)
+build_component(NAME boss_plc SOURCES boss_plc.c LIBS ulapi hal)
+build_component(NAME debounce SOURCES debounce.c LIBS ulapi hal)
+build_component(NAME encoder SOURCES encoder.c LIBS ulapi hal)
+build_component(NAME counter SOURCES counter.c LIBS ulapi hal)
+build_component(NAME encoder_ratio SOURCES encoder_ratio.c LIBS ulapi hal)
+build_component(NAME stepgen SOURCES stepgen.c LIBS ulapi hal)
+build_component(NAME lcd SOURCES lcd.c LIBS ulapi hal)
+build_component(NAME matrix_kb SOURCES matrix_kb.c LIBS ulapi hal)
+build_component(NAME mux_generic SOURCES mux_generic.c LIBS ulapi hal)
+build_component(NAME pwmgen SOURCES pwmgen.c LIBS ulapi hal)
+build_component(NAME siggen SOURCES siggen.c LIBS ulapi hal)
+build_component(NAME pid SOURCES pid.c LIBS ulapi hal)
+build_component(NAME threads SOURCES threads.c LIBS ulapi hal)
+build_component(NAME supply SOURCES supply.c LIBS ulapi hal)
+build_component(NAME sim_encoder SOURCES sim_encoder.c LIBS ulapi hal)
+build_component(NAME weighted_sum SOURCES weighted_sum.c LIBS ulapi hal)
+build_component(NAME watchdog SOURCES watchdog.c LIBS ulapi hal)
+build_component(NAME modmath SOURCES modmath.c LIBS ulapi hal)
+build_component(NAME streamer SOURCES streamer.c LIBS ulapi hal)
+build_component(NAME sampler SOURCES sampler.c LIBS ulapi hal)
 
 #kinematics
-build_component(NAME trivkins SOURCES ../../emc/kinematics/trivkins.c ../../emc/kinematics/kins_util.c)
-build_component(NAME maxkins SOURCES ../../emc/kinematics/maxkins.c)
-build_component(NAME rotatekins SOURCES ../../emc/kinematics/rotatekins.c)
-build_component(NAME tripodkins SOURCES ../../emc/kinematics/tripodkins.c)
-build_component(NAME corexykins SOURCES ../../emc/kinematics/corexykins.c)
-build_component(NAME lineardeltakins SOURCES ../../emc/kinematics/lineardeltakins.c)
-build_component(NAME rotarydeltakins SOURCES ../../emc/kinematics/rotarydeltakins.c)
-build_component(NAME rosekins SOURCES ../../emc/kinematics/rosekins.c)
-build_component(NAME scorbot-kins SOURCES ../../emc/kinematics/scorbot-kins.c)
-build_component(NAME pentakins SOURCES ../../emc/kinematics/pentakins.c ../../libnml/posemath/_posemath.c ../../libnml/posemath/sincos.c)
+build_component(NAME trivkins SOURCES ../../emc/kinematics/trivkins.c ../../emc/kinematics/kins_util.c LIBS ulapi hal motion_component libnml_posemath emc_nmlintf)
+build_component(NAME maxkins SOURCES ../../emc/kinematics/maxkins.c LIBS ulapi hal)
+build_component(NAME rotatekins SOURCES ../../emc/kinematics/rotatekins.c LIBS ulapi hal)
+build_component(NAME tripodkins SOURCES ../../emc/kinematics/tripodkins.c LIBS ulapi hal)
+build_component(NAME corexykins SOURCES ../../emc/kinematics/corexykins.c LIBS ulapi hal)
+build_component(NAME lineardeltakins SOURCES ../../emc/kinematics/lineardeltakins.c LIBS ulapi hal)
+build_component(NAME rotarydeltakins SOURCES ../../emc/kinematics/rotarydeltakins.c LIBS ulapi hal)
+build_component(NAME rosekins SOURCES ../../emc/kinematics/rosekins.c LIBS ulapi hal)
+build_component(NAME scorbot-kins SOURCES ../../emc/kinematics/scorbot-kins.c LIBS ulapi hal)
+build_component(NAME pentakins SOURCES ../../emc/kinematics/pentakins.c ../../libnml/posemath/_posemath.c ../../libnml/posemath/sincos.c LIBS ulapi hal)
 
-build_component(NAME motmod SOURCES ../../emc/kinematics/cubic.c
+build_component(NAME motmod
+		SOURCES
+		../../emc/kinematics/cubic.c
 		../../emc/tp/tc.c
 		../../emc/tp/tcq.c
 		../../emc/tp/tp.c
@@ -52,6 +54,7 @@ build_component(NAME motmod SOURCES ../../emc/kinematics/cubic.c
 		../../emc/nml_intf/emcpose.c
 		../../libnml/posemath/_posemath.c
 		../../libnml/posemath/sincos.c
+		LIBS ulapi hal
 		)
 
 #todo: userkfuncs
@@ -64,7 +67,9 @@ build_component(NAME classicladder_rt SOURCES
 		../classicladder/calc_sequential.c
 		../classicladder/manager.c
 		../classicladder/symbols.c
-		../classicladder/vars_access.c)
+		../classicladder/vars_access.c
+		LIBS ulapi hal
+		)
 
 compile_component(abs_s32 abs_s32.comp ON)
 compile_component(abs abs.comp ON)

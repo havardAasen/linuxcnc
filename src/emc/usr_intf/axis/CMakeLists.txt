@@ -5,7 +5,7 @@ target_link_libraries(emcmodule
         nmlintf
         nml
         ulapi
-        inifile
+        emc_inifile
         tooldata
         ${EPOXY_LIBRARIES})
 get_uspace_config(emcmodule)

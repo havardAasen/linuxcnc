@@ -1,0 +1,9 @@
+add_library(emc_ini
+        emcIniFile.cc
+        iniaxis.cc
+        inijoint.cc
+        initraj.cc
+        inihal.cc
+        inispindle.cc
+        )
+get_uspace_config(emc_ini)

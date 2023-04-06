@@ -1,4 +1,4 @@
-set(RS274NGC_SOURCES
+add_library(rs274ngc SHARED
         interp_arc.cc
         interp_array.cc
         interp_base.cc
@@ -30,8 +30,6 @@ set(RS274NGC_SOURCES
         rs274ngc_pre.cc
         interp_inspection.cc
         )
-
-add_library(rs274ngc SHARED ${RS274NGC_SOURCES})
 target_link_libraries(rs274ngc
         PRIVATE
         Python3::Module
@@ -39,13 +37,17 @@ target_link_libraries(rs274ngc
         pythonplugin)
 get_uspace_config(rs274ngc)
 
-add_library(gcode SHARED gcodemodule.cc)
-target_include_directories(gcode PUBLIC Python3::Python)
+add_library(gcode
+        SHARED
+        gcodemodule.cc)
+target_include_directories(gcode
+        PUBLIC
+        Python3::Python)
 target_link_libraries(gcode
         PRIVATE
         rs274ngc
         Python3::Python
-        inifile
+        emc_inifile
         hal
         tooldata
         Boost::${BOOSTPYTHON}
