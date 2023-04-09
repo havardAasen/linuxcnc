@@ -23,18 +23,6 @@ build_component(NAME modmath SOURCES modmath.c LIBS ulapi hal)
 build_component(NAME streamer SOURCES streamer.c LIBS ulapi hal)
 build_component(NAME sampler SOURCES sampler.c LIBS ulapi hal)
 
-#kinematics
-build_component(NAME trivkins SOURCES ../../emc/kinematics/trivkins.c ../../emc/kinematics/kins_util.c LIBS ulapi hal motion_component libnml_posemath emc_nmlintf emc_kinematics_cubic trajectoryplanner)
-build_component(NAME maxkins SOURCES ../../emc/kinematics/maxkins.c LIBS ulapi hal emc_nmlintf libnml_posemath)
-build_component(NAME rotatekins SOURCES ../../emc/kinematics/rotatekins.c LIBS ulapi hal)
-build_component(NAME tripodkins SOURCES ../../emc/kinematics/tripodkins.c LIBS ulapi hal)
-build_component(NAME corexykins SOURCES ../../emc/kinematics/corexykins.c LIBS ulapi hal)
-build_component(NAME lineardeltakins SOURCES ../../emc/kinematics/lineardeltakins.c LIBS ulapi hal)
-build_component(NAME rotarydeltakins SOURCES ../../emc/kinematics/rotarydeltakins.c LIBS ulapi hal)
-build_component(NAME rosekins SOURCES ../../emc/kinematics/rosekins.c LIBS ulapi hal)
-build_component(NAME scorbot-kins SOURCES ../../emc/kinematics/scorbot-kins.c LIBS ulapi hal)
-build_component(NAME pentakins SOURCES ../../emc/kinematics/pentakins.c ../../libnml/posemath/_posemath.c ../../libnml/posemath/sincos.c LIBS ulapi hal)
-
 build_component(NAME motmod
 		SOURCES
 		../../emc/kinematics/cubic.c

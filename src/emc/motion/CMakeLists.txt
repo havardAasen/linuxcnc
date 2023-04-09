@@ -18,5 +18,8 @@ add_library(motion_component
         stashf.c
         dbuf.c
         )
+target_link_libraries(motion_component
+        PUBLIC
+        trajectoryplanner)
 target_include_directories(motion_component PUBLIC .)
 get_uspace_config(motion_component)
