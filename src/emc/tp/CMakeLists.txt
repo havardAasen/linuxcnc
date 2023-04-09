@@ -5,4 +5,5 @@ add_library(trajectoryplanner
         spherical_arc.c
         blendmath.c
 )
+target_include_directories(trajectoryplanner PUBLIC .)
 get_uspace_config(trajectoryplanner)

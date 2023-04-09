@@ -27,3 +27,7 @@ target_link_libraries(l_rotarydeltakins
         hal
         posemath)
 get_uspace_config(l_rotarydeltakins)
+
+add_library(emc_kinematics_cubic cubic.c)
+target_include_directories(emc_kinematics_cubic PUBLIC .)
+get_uspace_config(emc_kinematics_cubic)

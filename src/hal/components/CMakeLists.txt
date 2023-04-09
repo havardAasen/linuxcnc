@@ -24,8 +24,8 @@ build_component(NAME streamer SOURCES streamer.c LIBS ulapi hal)
 build_component(NAME sampler SOURCES sampler.c LIBS ulapi hal)
 
 #kinematics
-build_component(NAME trivkins SOURCES ../../emc/kinematics/trivkins.c ../../emc/kinematics/kins_util.c LIBS ulapi hal motion_component libnml_posemath emc_nmlintf)
-build_component(NAME maxkins SOURCES ../../emc/kinematics/maxkins.c LIBS ulapi hal)
+build_component(NAME trivkins SOURCES ../../emc/kinematics/trivkins.c ../../emc/kinematics/kins_util.c LIBS ulapi hal motion_component libnml_posemath emc_nmlintf emc_kinematics_cubic trajectoryplanner)
+build_component(NAME maxkins SOURCES ../../emc/kinematics/maxkins.c LIBS ulapi hal emc_nmlintf libnml_posemath)
 build_component(NAME rotatekins SOURCES ../../emc/kinematics/rotatekins.c LIBS ulapi hal)
 build_component(NAME tripodkins SOURCES ../../emc/kinematics/tripodkins.c LIBS ulapi hal)
 build_component(NAME corexykins SOURCES ../../emc/kinematics/corexykins.c LIBS ulapi hal)

@@ -4,7 +4,7 @@ add_library(emc_nmlintf STATIC
         emc.cc
         emcpose.c
         emcargs.cc
-        emcops.cc
+        emcpos.cc
         canon_position.cc
         interpl.cc
         )
