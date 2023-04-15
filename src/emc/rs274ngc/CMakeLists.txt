@@ -1,3 +1,8 @@
+add_library(rs274ngc_modalstate
+        modal_state.cc
+        )
+target_include_directories(rs274ngc_modalstate PUBLIC .)
+
 add_library(rs274ngc SHARED
         interp_arc.cc
         interp_array.cc
@@ -14,7 +19,6 @@ add_library(rs274ngc SHARED
         interp_write.cc
         interp_o_word.cc
         interp_g7x.cc
-        modal_state.cc
         nurbs_additional_functions.cc
         interp_namedparams.cc
         interp_python.cc
@@ -30,11 +34,16 @@ add_library(rs274ngc SHARED
         rs274ngc_pre.cc
         interp_inspection.cc
         )
+target_include_directories(rs274ngc PUBLIC .)
 target_link_libraries(rs274ngc
         PRIVATE
         Python3::Module
         Boost::${BOOSTPYTHON}
-        pythonplugin)
+        pythonplugin
+        ulapi
+        emc_nmlintf
+        emc_tooldata
+        )
 get_uspace_config(rs274ngc)
 
 add_library(gcode

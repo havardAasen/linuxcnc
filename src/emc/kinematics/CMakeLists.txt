@@ -1,13 +1,14 @@
-set(GENSERKINS_SOURCES
+add_executable(genserkins
         ugenserkins.c
-        genserfuncs.c)
-
-add_executable(genserkins ${GENSERKINS_SOURCES})
+        genserfuncs.c
+        )
 target_link_libraries(genserkins
         PRIVATE
         hal
         posemath
-        m)
+        m
+        emc_nmlintf
+        )
 get_uspace_config(genserkins)
 
 add_library(l_lineardeltakins SHARED lineardeltakins.cc)
@@ -16,7 +17,9 @@ target_link_libraries(l_lineardeltakins
         ${BOOST_LIBS}
         Python3::Python
         hal
-        posemath)
+        posemath
+        emc_nmlintf
+        )
 get_uspace_config(l_lineardeltakins)
 
 add_library(l_rotarydeltakins SHARED rotarydeltakins.cc)
@@ -25,13 +28,16 @@ target_link_libraries(l_rotarydeltakins
         ${BOOST_LIBS}
         Python3::Python
         hal
-        posemath)
+        posemath
+        emc_nmlintf
+        )
 get_uspace_config(l_rotarydeltakins)
 
 add_library(emc_kinematics_cubic cubic.c)
 target_link_libraries(emc_kinematics_cubic
         PUBLIC
-        libnml_posemath)
+        libnml_posemath
+        )
 target_include_directories(emc_kinematics_cubic PUBLIC .)
 get_uspace_config(emc_kinematics_cubic)
 
@@ -41,8 +47,8 @@ build_component(NAME maxkins SOURCES maxkins.c LIBS ulapi hal emc_nmlintf libnml
 build_component(NAME rotatekins SOURCES rotatekins.c LIBS ulapi hal emc_nmlintf libnml_posemath)
 build_component(NAME tripodkins SOURCES tripodkins.c LIBS ulapi hal emc_nmlintf libnml_posemath)
 build_component(NAME corexykins SOURCES corexykins.c LIBS ulapi hal emc_nmlintf libnml_posemath motion_component emc_kinematics_cubic)
-build_component(NAME lineardeltakins SOURCES lineardeltakins.c LIBS ulapi hal)
-build_component(NAME rotarydeltakins SOURCES rotarydeltakins.c LIBS ulapi hal)
-build_component(NAME rosekins SOURCES rosekins.c LIBS ulapi hal)
+build_component(NAME lineardeltakins SOURCES lineardeltakins.c LIBS ulapi hal emc_nmlintf)
+build_component(NAME rotarydeltakins SOURCES rotarydeltakins.c LIBS ulapi hal emc_nmlintf)
+build_component(NAME rosekins SOURCES rosekins.c LIBS ulapi hal emc_nmlintf)
 build_component(NAME scorbot-kins SOURCES scorbot-kins.c LIBS ulapi hal emc_nmlintf libnml_posemath)
 build_component(NAME pentakins SOURCES pentakins.c LIBS ulapi hal emc_nmlintf libnml_posemath)

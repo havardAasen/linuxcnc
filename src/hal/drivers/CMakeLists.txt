@@ -5,7 +5,8 @@ if(${BUILD_PARPORT})
 endif()
 
 # drivers (not working on FreeBSD)
-if(${CMAKE_SYSTEM} MATCHES "Linux")
+# TODO: fix drivers
+if(${CMAKE_SYSTEM} MATCHES "Linux" AND 0)
 	build_component(NAME pci_8255 SOURCES pci_8255.c LIBS ulapi hal)
 	build_component(NAME hal_tiro SOURCES hal_tiro.c LIBS ulapi hal)
 	build_component(NAME hal_stg SOURCES hal_stg.c LIBS ulapi hal)

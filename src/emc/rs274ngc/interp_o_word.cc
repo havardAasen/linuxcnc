@@ -32,7 +32,7 @@
 #include "interp_return.hh"
 #include "interp_internal.hh"
 #include "rs274ngc_interp.hh"
-#include "python_plugin.hh"
+//#include "python_plugin.hh"
 #include "interp_python.hh"
 #include <rtapi_string.h>
 

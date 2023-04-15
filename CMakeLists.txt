@@ -30,6 +30,7 @@ if(${CMAKE_SYSTEM} MATCHES "Linux")
     find_package(TIRPC REQUIRED)
 else()
     # assume BSD
+    # TODO: replace this with a proper target and move it the the FindTIRPC.cmake
     set(TIRPC_LIBRARIES "")
     set(TIRPC_INCLUDE_DIRS "")
     include_directories(/usr/local/include/)

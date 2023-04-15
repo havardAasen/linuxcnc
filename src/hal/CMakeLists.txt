@@ -5,7 +5,7 @@ set_property(TARGET hal PROPERTY POSITION_INDEPENDENT_CODE ON)
 get_uspace_config(hal)
 target_include_directories(hal PUBLIC .)
 target_link_libraries(hal
-        PRIVATE
+        PUBLIC
         ulapi)
 
 set_target_properties(hal PROPERTIES POSITION_INDEPENDENT_CODE ON)

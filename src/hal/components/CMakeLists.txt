@@ -23,28 +23,6 @@ build_component(NAME modmath SOURCES modmath.c LIBS ulapi hal)
 build_component(NAME streamer SOURCES streamer.c LIBS ulapi hal)
 build_component(NAME sampler SOURCES sampler.c LIBS ulapi hal)
 
-build_component(NAME motmod
-		SOURCES
-		../../emc/kinematics/cubic.c
-		../../emc/tp/tc.c
-		../../emc/tp/tcq.c
-		../../emc/tp/tp.c
-		../../emc/tp/spherical_arc.c
-		../../emc/tp/blendmath.c
-		../../emc/motion/motion.c
-		../../emc/motion/command.c
-		../../emc/motion/control.c
-		../../emc/motion/homing.c
-		../../emc/motion/simple_tp.c
-		../../emc/motion/emcmotutil.c
-		../../emc/motion/stashf.c
-		../../emc/motion/dbuf.c
-		../../emc/nml_intf/emcpose.c
-		../../libnml/posemath/_posemath.c
-		../../libnml/posemath/sincos.c
-		LIBS ulapi hal
-		)
-
 #todo: userkfuncs
 
 build_component(NAME classicladder_rt SOURCES
@@ -153,7 +131,8 @@ compile_component(toggle2nist toggle2nist.comp ON)
 compile_component(tristate_bit tristate_bit.comp ON)
 compile_component(tristate_float tristate_float.comp ON)
 compile_component(updown updown.comp ON)
-compile_component(userkins userkins.comp ON)
+# TODO: fix this component
+#compile_component(userkins userkins.comp ON)
 compile_component(wcomp wcomp.comp ON)
 compile_component(xhc_hb04_util xhc_hb04_util.comp ON)
 compile_component(xor2 xor2.comp ON)

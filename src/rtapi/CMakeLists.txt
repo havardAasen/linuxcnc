@@ -3,6 +3,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR True)
 add_library(mathstubs mathstubs.c)
 
 # use this function for everything that needs rtapi
+# TODO: delete this function and just add it to the ulapi / rtapi target?
 function(get_uspace_config tgt)
     if(USE_USPACE)
         target_link_libraries(${tgt} PRIVATE Threads::Threads)

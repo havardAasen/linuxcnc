@@ -1,15 +1,13 @@
-set(TOOLDATA_SOURCES
+add_library(emc_tooldata
         tooldata_common.cc
         tooldata_db.cc
-        tool_watch.cc
-        )
-
-add_library(tooldata ${TOOLDATA_SOURCES})
-get_uspace_config(tooldata)
-set_property(TARGET tooldata PROPERTY POSITION_INDEPENDENT_CODE ON)
+        tool_watch.cc)
+target_include_directories(emc_tooldata PUBLIC .)
+get_uspace_config(emc_tooldata)
+set_property(TARGET emc_tooldata PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 if(${TOOL_NML})
-    target_sources(tooldata PRIVATE
+    target_sources(emc_tooldata PRIVATE
             tooldata_nml.cc
             )
 else()
@@ -21,7 +19,7 @@ target_link_libraries(tooldata_watch
         PRIVATE
         Python3::Python
         inifile
-        tooldata
+        emc_tooldata
         nml
         nmlintf)
 get_uspace_config(tooldata_watch)

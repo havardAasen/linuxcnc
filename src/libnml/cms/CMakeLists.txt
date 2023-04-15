@@ -12,4 +12,21 @@ add_library(libnml_cms
         tcp_opts.cc
         tcp_srv.cc
         )
+target_include_directories(libnml_cms
+        PUBLIC
+        ${TIRPC_INCLUDE_DIRS}
+        .
+        )
+target_link_libraries(libnml_cms
+        PRIVATE
+        nml
+        libnml_linklist
+        libnml_buffer
+        libnml_posemath
+        PUBLIC
+        libnml_rcs
+        ulapi
+        ${TIRPC_LIBRARIES}
+        )
+get_uspace_config(libnml_cms)
 set_property(TARGET libnml_cms PROPERTY POSITION_INDEPENDENT_CODE ON)

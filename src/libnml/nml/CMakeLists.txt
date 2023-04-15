@@ -10,13 +10,25 @@ add_library(nml SHARED
         )
 target_link_libraries(nml
         PRIVATE
-        hal
-        libnml_buffer
-        libnml_cms
         libnml_linklist
+        PUBLIC
+        ulapi
+        INTERFACE
+        libnml_cms
+        libnml_rcs
         libnml_os_intf
-        ${TIRPC_LIBRARIES})
-target_include_directories(nml PRIVATE ${TIRPC_INCLUDE_DIRS})
+        libnml_inifile
+        libnml_buffer
+        )
+target_include_directories(nml
+        PUBLIC
+        .
+        ../cms/
+        ../rcs/
+        ../os_intf/
+        ../buffer/
+        ../inifile/
+        )
 get_uspace_config(nml)
 
 set_property(TARGET nml PROPERTY POSITION_INDEPENDENT_CODE ON)
