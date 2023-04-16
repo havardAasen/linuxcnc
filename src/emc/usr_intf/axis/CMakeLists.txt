@@ -20,6 +20,7 @@ target_include_directories(_togl
         PRIVATE
         ${TCL_INCLUDE_PATH})
 target_link_libraries(_togl
+        PRIVATE
         Python3::Python
         ${TCL_LIBRARY}
         ${TK_LIBRARY}
