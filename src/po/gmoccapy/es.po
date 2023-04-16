@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gmoccapy\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 06:19+0200\n"
+"Report-Msgid-Bugs-To: emc-developers@lists.sourceforge.net\n"
+"POT-Creation-Date: 2023-02-12 11:32+0100\n"
 "PO-Revision-Date: 2023-03-29 03:16+0000\n"
 "Last-Translator: Ulices <dev.n47os@aleeas.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/linuxcnc/"
@@ -272,12 +272,12 @@ msgstr ""
 "ERROR, intentando de iniciazar los user tabs o programas, cuida por "
 "ortografía"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.py:1934
+#: src/emc/usr_intf/gmoccapy/gmoccapy.py:1955
 msgid "Did not find a toolfile file in [EMCIO] TOOL_TABLE"
 msgstr ""
 "No se ha encontrado ningún archivo de herramientas en [EMCIO] TOOL_TABLE"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2018
+#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2039
 msgid "Audio available!"
 msgstr "¡Audio disponible!"
 
@@ -297,11 +297,11 @@ msgstr ""
 " Modo\n"
 "motores"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2103
+#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2123
 msgid "Virtual keyboard program found : <onboard>"
 msgstr "Programa de teclado virtual encontrado : <onboard>"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2105
+#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2125
 msgid ""
 "No virtual keyboard installed, we checked for <onboard>. Try 'sudo apt-get "
 "install onboard'."
@@ -309,7 +309,7 @@ msgstr ""
 "No hay teclado virtual instalado, comprobamos <onboard>. Pruebe con <sudo "
 "apt-get install onboard>."
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2118
+#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2138
 msgid ""
 "Error with launching virtual keyboard. Is onboard installed?Try sudo apt-get "
 "install onboard"
@@ -322,7 +322,7 @@ msgstr ""
 msgid "interrupt running macro"
 msgstr "Interrumpir ejecución de macro"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2181
+#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2201
 msgid "Did not find a parameter file in [RS274NGC] PARAMETER_FILE"
 msgstr "No se encontró un archivo de parámetros en [RS274NGC] PARAMETER_FILE"
 
@@ -330,8 +330,8 @@ msgstr "No se encontró un archivo de parámetros en [RS274NGC] PARAMETER_FILE"
 msgid "Select the file you want to be loaded at program start"
 msgstr "Seleccione el archivo que desea cargar al iniciar el programa"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2285
-#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2309
+#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2305
+#: src/emc/usr_intf/gmoccapy/gmoccapy.py:2329
 #, python-brace-format
 msgid "Message type {0} not supported"
 msgstr "No se admite el mensaje de tipo {0} "

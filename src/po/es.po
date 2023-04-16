@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 06:18+0200\n"
+"Report-Msgid-Bugs-To: emc-developers@lists.sourceforge.net\n"
+"POT-Creation-Date: 2023-01-26 22:23+0100\n"
 "PO-Revision-Date: 2023-03-29 03:16+0000\n"
 "Last-Translator: Ulices <dev.n47os@aleeas.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/linuxcnc/"
@@ -4487,7 +4487,7 @@ msgstr "Vaciado serial completo\n"
 msgid "ERROR CLASSICLADDER-   Failed to create thread I/O Modbus master...\n"
 msgstr "ERROR CLASSICLADDER-   Fallo al crear hilo I/O Modbus maestro...\n"
 
-#: src/hal/classicladder/socket_modbus_master.c:121
+#: src/hal/classicladder/socket_modbus_master.c:128
 #, c-format
 msgid ""
 "INFO CLASSICLADDER---I/O Modbus master Data bits %i Stop bits %i Parity %i\n"
@@ -4495,7 +4495,7 @@ msgstr ""
 "INFO CLASSICLADDER --- E/S Modbus maestro Bits de Datos %i Bits de Parada %i "
 "Paridad %i\n"
 
-#: src/hal/classicladder/socket_modbus_master.c:124
+#: src/hal/classicladder/socket_modbus_master.c:131
 #, c-format
 msgid "INFO CLASSICLADDER---I/O Modbus master (%s) init ok !\n"
 msgstr "INFO CLASSICLADDER---I/O Modbus maestro (%s) init ok !\n"
@@ -4557,7 +4557,7 @@ msgstr "¡ERROR CLASSICLADDER- NO PODÍA ENVIARSE EN EL SOCKET !!!(LgtSend=%d)\n
 msgid "INFO CLASSICLADDER-   waiting for slave response...\n"
 msgstr "INFO CLASSICLADDER- esperando respuesta esclavo...\n"
 
-#: src/hal/classicladder/socket_modbus_master.c:307
+#: src/hal/classicladder/socket_modbus_master.c:320
 #, c-format
 msgid "INFO CLASSICLADDER---I/O Modbus master closed!\n"
 msgstr "INFO CLASSICLADDER --- ¡maestro modbus de E / S cerrado!\n"
@@ -4646,9 +4646,8 @@ msgstr "INFO CLASSICLADDER --- ¡El socket del servidor está cerrado!\n"
 msgid "Bit Status Window"
 msgstr "Ventana de estado de bit"
 
-#: src/hal/classicladder/spy_vars_gtk.c:202
-#, fuzzy
-msgid "Offset for vars displayed below (return to apply)"
+#: src/hal/classicladder/spy_vars_gtk.c:222
+msgid "Offset for vars displayed below (press return to apply)"
 msgstr ""
 "Offset para las variables que se muestran a continuación (pulse Retorno para "
 "aplicar)"
@@ -7626,7 +7625,7 @@ msgstr "Distancia total:"
 msgid "Run time:"
 msgstr "Tiempo de ejecución:"
 
-#: src/emc/usr_intf/axis/scripts/axis.py:1819
+#: src/emc/usr_intf/axis/scripts/axis.py:1820
 msgid "Tool Change List:"
 msgstr "Lista de cambio de herramientas:"
 

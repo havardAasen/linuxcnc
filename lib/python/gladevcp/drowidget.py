@@ -16,6 +16,7 @@
 
 import sys, os
 import math
+import linuxcnc
 import re
 import inspect
 
@@ -90,6 +91,18 @@ class HAL_DRO(Gtk.Label):
         self.display_units_mm = 0
         self.machine_units_mm = 0
         self.unit_convert=[1]*9
+
+        self.css_text = """
+                        .background  {background-color: #000000;}
+                        .labelcolor  {color: #FF0000;}
+                        """
+
+        self.css = Gtk.CssProvider()
+        self.css.load_from_data(bytes(self.css_text, 'utf-8'))
+        self.get_style_context().add_provider(self.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        self.get_style_context().add_class('background')
+        self.get_style_context().add_class('labelcolor')
+
         try:
             self.inifile = linuxcnc.ini(INIPATH)
             # check the INI file if UNITS are set to mm"

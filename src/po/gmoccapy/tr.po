@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 06:19+0200\n"
+"Report-Msgid-Bugs-To: emc-developers@lists.sourceforge.net\n"
+"POT-Creation-Date: 2023-02-12 11:32+0100\n"
 "PO-Revision-Date: 2023-04-01 02:17+0000\n"
 "Last-Translator: kemal askan <kemalaskan90@gmail.com>\n"
 "Language-Team: none\n"
@@ -817,6 +817,82 @@ msgid "Undo"
 msgstr "Geri Al"
 
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:32
+msgid "Tool no."
+msgstr ""
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:33
+msgid "Diameter"
+msgstr "Çap"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:34
+msgid "offset z"
+msgstr "ofset z"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:35
+msgid "offset x"
+msgstr "ofset x"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:37
+msgid "Vc= 0.00"
+msgstr "Vc= 0.00"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:38
+msgid "<b>Tool information</b>"
+msgstr "<b>Takım bilgisi</b>"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:39
+msgid "G and M code information as well as speed and feed"
+msgstr "G ve M kodu bilgilerinin yanı sıra hız ve besleme"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:40
+msgid "active_mcodes_label"
+msgstr "active_mcodes_label"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:41
+msgid "active_gcodes_label"
+msgstr ""
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:42
+msgid "<b>G-Code</b>"
+msgstr "<b> G-Kodu</b>"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:43
+msgid "<b>Cooling</b>"
+msgstr "<b> Soğutma</b>"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:44
+msgid "<b>Spindle [rpm]</b>"
+msgstr "<b>Spindle Devri [rpm]</b>"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:45
+msgid "Vel."
+msgstr "Vel."
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:46
+msgid "Displays the current velocity"
+msgstr ""
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:47
+msgid "<b>Rapid Override</b>"
+msgstr "<b> Hızlı Geçersiz Kılma</b>"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:48
+msgid "Displays the programmed feed rate"
+msgstr ""
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:50
+msgid "reset feed override to 100 %"
+msgstr "beslemeyi% 100'e geri al"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:51
+msgid "<b>Feed Override</b>"
+msgstr ""
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:52
+msgid "Undo"
+msgstr "Geri Al"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:53
 msgid ""
 "Search\n"
 " back"
@@ -1043,14 +1119,12 @@ msgid "Unhomed color"
 msgstr "Home'siz renk"
 
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:92
-msgid ""
-"The real font size is reduced to 0.75*FontSize when four DRO elements are "
-"present and to 0.65*FontSize for more than five elements."
-msgstr ""
+msgid "Size"
+msgstr "boyut"
 
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:93
-msgid "Font size"
-msgstr ""
+msgid "Digits"
+msgstr "Rakamlar"
 
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:94
 msgid "Digits"
@@ -1064,29 +1138,33 @@ msgstr ""
 "DRO modunu değiştirme\n"
 "DRO'ya tıklayarak"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:97
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:96
 msgid "<b>DRO</b>"
 msgstr "<b>DRO</b>"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:98
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:97
 msgid "Grid size"
 msgstr "Izgara boyutu"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:99
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:98
 msgid "Show DRO"
 msgstr "DRO'yu göster"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:100
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:99
 msgid "Show offsets"
 msgstr "Ofsetleri göster"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:101
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:100
 msgid "Show DTG"
 msgstr "DTG'yi göster"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:102
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:101
 msgid "<b>Mouse Button mode</b>"
 msgstr "<b>Mouse Düğme modu</b>"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:102
+msgid "<b>Preview</b>"
+msgstr "<b> Önizleme</b>"
 
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:103
 msgid "<b>Preview</b>"
@@ -1100,13 +1178,17 @@ msgstr ""
 "geçerli\n"
 "   dosya"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:106
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:105
 msgid "none"
 msgstr "none"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:107
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:106
 msgid "<b>File to load on start</b>"
 msgstr "<b>Başlangıçta yüklenecek dosya</b>"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:107
+msgid "Select user dir"
+msgstr "kullanıcı dizini seçin"
 
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:108
 msgid "Select user dir"
@@ -1116,25 +1198,29 @@ msgstr "kullanıcı dizini seçin"
 msgid "<b>Select jump to dir</b>"
 msgstr ""
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:110
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:109
 msgid "Themes"
 msgstr "Temalar"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:111
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:110
 msgid "Warning Audio"
 msgstr "Uyarı Sesi"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:112
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:111
 msgid "Alert Audio"
 msgstr "Uyarı Sesi"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:113
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:112
 msgid "Icon Theme"
 msgstr "Simge Teması"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:114
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:113
 msgid "<b>Themes and sound</b>"
 msgstr "<b>Temalar ve ses</b>"
+
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:114
+msgid "Appearance"
+msgstr "Görünüm"
 
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:115
 msgid "Appearance"
