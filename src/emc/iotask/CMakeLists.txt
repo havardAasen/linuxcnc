@@ -15,5 +15,5 @@ target_link_libraries(iov2
         hal
         emc_tooldata
         ulapi
-        inifile)
+        )
 get_uspace_config(iov2)

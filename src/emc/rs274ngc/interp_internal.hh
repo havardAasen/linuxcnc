@@ -31,6 +31,7 @@
 #include "interp_base.hh"
 #include "tooldata.hh"
 
+#include "python_plugin.hh"
 
 #define _(s) gettext(s)
 

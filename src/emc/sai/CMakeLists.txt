@@ -3,17 +3,19 @@ add_executable(rs274
         driver.cc
         dummyemcstat.cc
         ../task/taskmodule.cc
-        ../task/taskclass.cc)
+        ../task/taskclass.cc
+        )
 target_link_libraries(rs274
         PRIVATE
         Python3::Python
         readline
         rs274ngc
         linuxcnc
-        inifile
         pythonplugin
-        tooldata
         hal
         nml
-        nmlintf)
+        emc_nmlintf
+        emc_tooldata
+        )
+target_include_directories(rs274 PUBLIC .)
 get_uspace_config(rs274)

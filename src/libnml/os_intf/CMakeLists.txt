@@ -9,4 +9,4 @@ add_library(libnml_os_intf
 target_link_libraries(libnml_os_intf PUBLIC ulapi libnml_rcs)
 target_include_directories(libnml_os_intf PUBLIC .)
 get_uspace_config(libnml_os_intf)
-set_property(TARGET libnml_buffer PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET libnml_os_intf PROPERTY POSITION_INDEPENDENT_CODE ON)

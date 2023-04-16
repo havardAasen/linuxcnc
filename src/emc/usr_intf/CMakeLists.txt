@@ -1,82 +1,76 @@
-set(EMCSH_SOURCES
+add_library(linuxcnc SHARED
         emcsh.cc
         shcom.cc
         )
-
-set(EMCRSH_SOURCES
-        emcrsh.cc
-        shcom.cc
-        )
-
-set(EMCSCHED_SOURCES
-        schedrmt.cc
-        emcsched.cc
-        shcom.cc
-        )
-
-set(EMCLCD_SOURCES
-        emclcd.cc
-        shcom.cc
-        sockets.c
-        )
-set(HALUI_SOURCES
-        halui.cc
-        )
-
-add_library(linuxcnc SHARED ${EMCSH_SOURCES})
 target_include_directories(linuxcnc
         PRIVATE
-        ${TCL_INCLUDE_PATH}
+        ${TCL_INCLUDE_PATH})
+target_link_libraries(linuxcnc
+        PRIVATE
         ${TCL_LIBRARY}
         ${TK_LIBRARY}
         X11::Xinerama
         Python3::Python
         pythonplugin
         nml
-        nmlintf
-        emc_inifile)
+        emc_nmlintf
+        libnml_rcs
+        libnml_posemath
+        )
 get_uspace_config(linuxcnc)
 
-add_executable(linuxcncrsh ${EMCRSH_SOURCES})
+add_executable(linuxcncrsh
+        emcrsh.cc
+        shcom.cc)
 target_link_libraries(linuxcncrsh
         PRIVATE
         nml
-        nmlintf
-        emc_inifile
+        emc_nmlintf
         halsh
+        libnml_rcs
+        libnml_posemath
         ulapi)
 get_uspace_config(linuxcncrsh)
 
-add_executable(schedrmt ${EMCSCHED_SOURCES})
+add_executable(schedrmt
+        schedrmt.cc
+        emcsched.cc
+        shcom.cc)
+
 target_link_libraries(schedrmt
         PRIVATE
         nml
-        nmlintf
-        emc_inifile
+        emc_nmlintf
         halsh
-        ulapi)
+        ulapi
+        libnml_posemath)
 get_uspace_config(schedrmt)
 
-add_executable(linuxcnclcd ${EMCLCD_SOURCES})
+add_executable(linuxcnclcd
+        emclcd.cc
+        shcom.cc
+        sockets.c
+        )
 target_link_libraries(linuxcnclcd
         PRIVATE
         nml
-        nmlintf
-        emc_inifile
+        emc_nmlintf
         halsh
         ulapi)
 get_uspace_config(linuxcnclcd)
 
-add_executable(halui ${HALUI_SOURCES})
+add_executable(halui
+        halui.cc
+        )
 target_link_libraries(halui
         PRIVATE
         nml
-        nmlintf
-        emc_inifile
+        emc_nmlintf
+        libnml_posemath
         halsh
         ulapi
         hal
-        tooldata)
+        emc_tooldata)
 get_uspace_config(halui)
 
 add_subdirectory(axis)

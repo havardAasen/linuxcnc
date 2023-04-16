@@ -13,7 +13,6 @@ target_link_libraries(emc_nmlintf
         emc_tooldata
         PUBLIC
         rs274ngc_modalstate
-        inifile
         nml
         libnml_posemath
         motion_component

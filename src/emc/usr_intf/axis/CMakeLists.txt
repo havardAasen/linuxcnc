@@ -2,11 +2,10 @@ add_library(emcmodule SHARED extensions/emcmodule.cc)
 target_link_libraries(emcmodule
         PRIVATE
         Python3::Python
-        nmlintf
+        emc_nmlintf
         nml
         ulapi
-        emc_inifile
-        tooldata
+        emc_tooldata
         ${EPOXY_LIBRARIES})
 get_uspace_config(emcmodule)
 
@@ -19,7 +18,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_library(_togl SHARED extensions/_toglmodule.c)
 target_include_directories(_togl
         PRIVATE
-        ${TCL_INCLUDE_PATH}
+        ${TCL_INCLUDE_PATH})
+target_link_libraries(_togl
         Python3::Python
         ${TCL_LIBRARY}
         ${TK_LIBRARY}

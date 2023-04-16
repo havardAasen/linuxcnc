@@ -1,4 +1,5 @@
 add_library(motion_task
+        axis.c
         emcmotglb.c
         usrmotintf.cc
         emcmotutil.c
@@ -22,9 +23,8 @@ add_library(motion_component
         dbuf.c
         )
 target_link_libraries(motion_component
-        PRIVATE
-        hal
         PUBLIC
+        hal
         trajectoryplanner
         )
 target_include_directories(motion_component PUBLIC .)
@@ -34,5 +34,6 @@ build_component(NAME motmod
         SOURCES
         motion.c
         homing.c
+        ../tp/tp.c
         LIBS ulapi hal motion_component libnml_posemath emc_kinematics_cubic trajectoryplanner emc_nmlintf
         )

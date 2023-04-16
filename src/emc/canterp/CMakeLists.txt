@@ -1,7 +1,6 @@
 add_library(canterp SHARED canterp.cc)
 target_link_libraries(canterp
         PRIVATE
-        emc_inifile
         rs274ngc
         libnml_posemath
         motion_component

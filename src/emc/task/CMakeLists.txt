@@ -5,8 +5,9 @@ target_link_libraries(linuxcncsvr
         PRIVATE
         hal
         nml
-        nmlintf
-        inifile)
+        emc_nmlintf
+        emc_ini
+        )
 get_uspace_config(linuxcncsvr)
 
 
@@ -25,13 +26,13 @@ target_link_libraries(milltask
         Boost::${BOOSTPYTHON}
         hal
         nml
-        nmlintf
-        inifile
+        emc_nmlintf
+        emc_ini
         Python3::Python
         pythonplugin
-        posemath
         rs274ngc
-        tooldata
+        emc_tooldata
+        libnml_posemath
         )
 get_uspace_config(milltask)
 

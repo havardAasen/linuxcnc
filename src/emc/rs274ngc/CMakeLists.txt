@@ -1,6 +1,10 @@
 add_library(rs274ngc_modalstate
         modal_state.cc
         )
+target_link_libraries(rs274ngc_modalstate
+        PRIVATE
+        emc_nmlintf
+        )
 target_include_directories(rs274ngc_modalstate PUBLIC .)
 
 add_library(rs274ngc SHARED
@@ -43,6 +47,7 @@ target_link_libraries(rs274ngc
         ulapi
         emc_nmlintf
         emc_tooldata
+        hal
         )
 get_uspace_config(rs274ngc)
 
@@ -56,9 +61,9 @@ target_link_libraries(gcode
         PRIVATE
         rs274ngc
         Python3::Python
-        emc_inifile
         hal
-        tooldata
         Boost::${BOOSTPYTHON}
-        pythonplugin)
+        pythonplugin
+        emc_nmlintf
+        emc_tooldata)
 set_target_properties(gcode PROPERTIES PREFIX "")
