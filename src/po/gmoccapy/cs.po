@@ -1012,85 +1012,6 @@ msgstr "resetování rychlosti posuvů na 100%"
 msgid "<b>Feed Override</b>"
 msgstr "<b>Posuv</b>"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:46
-msgid "Information over the tool in spindle"
-msgstr ""
-"Informace o nástroji ve vřeteni,\n"
-"Vc - řezná rychlost"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:47
-msgid "Tool no."
-msgstr "Nástroj č."
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:48
-msgid "Diameter"
-msgstr "Průměr"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:49
-msgid "offset z"
-msgstr "Odsazení z"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:50
-msgid "offset x"
-msgstr "Odsazení x"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:52
-msgid "Vc= 0.00"
-msgstr "Vc= 0.00"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:53
-msgid "<b>Tool information</b>"
-msgstr "<b>Informace o nástroji</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:54
-msgid "G and M code information as well as speed and feed"
-msgstr "Aktivní G-kódy, M-funkce a aktuální otáčky vřetene a posuv"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:55
-msgid "active_mcodes_label"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:56
-msgid "active_gcodes_label"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:57
-msgid "<b>G-Code</b>"
-msgstr "<b>Aktivované G-kódy a M-funkce</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:58
-msgid "<b>Cooling</b>"
-msgstr "<b>Chlazení</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:59
-msgid "<b>Spindle [rpm]</b>"
-msgstr "<b>Vřeteno [ot/min]</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:60
-msgid "Vel."
-msgstr "G0"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:61
-msgid "Displays the current velocity"
-msgstr "Zobrazení aktuální rychlosti"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:62
-msgid "<b>Rapid Override</b>"
-msgstr "<b>Rychloposuv</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:63
-#, fuzzy
-msgid "Displays the programmed feed rate"
-msgstr "Zobrazení naprogramované rychlosti posuvu"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:65
-msgid "reset feed override to 100 %"
-msgstr "resetování rychlosti posuvů na 100%"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:66
-msgid "<b>Feed Override</b>"
-msgstr "<b>Posuv</b>"
-
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:67
 msgid "Main"
 msgstr "Hlavní"
@@ -1390,7 +1311,7 @@ msgstr "Použít automatické měření nástroje"
 msgid "Z Pos."
 msgstr "Z Poz."
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:139
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:138
 msgid "Max. Probe"
 msgstr "Max. sonda"
 
@@ -1891,9 +1812,6 @@ msgstr "Načíst soubor"
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:257
 msgid "home joints"
 msgstr "referování aktuátorů"
-
-#~ msgid "Size"
-#~ msgstr "Velikost"
 
 #, fuzzy
 #~ msgid "Font size"

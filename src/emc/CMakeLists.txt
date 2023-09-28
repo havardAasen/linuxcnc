@@ -1,6 +1,5 @@
 add_subdirectory(canterp)
 add_subdirectory(ini)
-add_subdirectory(iotask)
 add_subdirectory(kinematics)
 add_subdirectory(motion)
 add_subdirectory(motion-logger)

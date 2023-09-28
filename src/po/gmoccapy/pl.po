@@ -1027,86 +1027,6 @@ msgstr "resetuj przeskalowanie posuwów do 100%"
 msgid "<b>Feed Override</b>"
 msgstr "<b>Przeskalowanie [%]</b>"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:46
-msgid "Information over the tool in spindle"
-msgstr "Informacja o narzędziu we wrzecionie"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:47
-msgid "Tool no."
-msgstr "Narzędzie nr "
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:48
-msgid "Diameter"
-msgstr "Średnica"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:49
-msgid "offset z"
-msgstr "ofset Z"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:50
-msgid "offset x"
-msgstr "ofset X"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:52
-#, fuzzy
-msgid "Vc= 0.00"
-msgstr "0.000"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:53
-msgid "<b>Tool information</b>"
-msgstr "<b>Informacja o narzędziu</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:54
-msgid "G and M code information as well as speed and feed"
-msgstr "Informacje o G- i M- kodach oraz prędkościach"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:55
-msgid "active_mcodes_label"
-msgstr "aktywne m-kody"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:56
-msgid "active_gcodes_label"
-msgstr "aktywne g-kody"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:57
-msgid "<b>G-Code</b>"
-msgstr "<b>Aktywne G-kody</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:58
-msgid "<b>Cooling</b>"
-msgstr "<b>Chłodziwo</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:59
-msgid "<b>Spindle [rpm]</b>"
-msgstr "<b>Wrzeciono [Obr/min]</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:60
-msgid "Vel."
-msgstr "Prędkość"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:61
-msgid "Displays the current velocity"
-msgstr "Pokazuje bieżącą prędkość"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:62
-#, fuzzy
-msgid "<b>Rapid Override</b>"
-msgstr "<b>Przeskalowanie [%]</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:63
-#, fuzzy
-msgid "Displays the programmed feed rate"
-msgstr "Pokazuje zaprogramowaną prędkość"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:65
-msgid "reset feed override to 100 %"
-msgstr "resetuj przeskalowanie posuwów do 100%"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:66
-#, fuzzy
-msgid "<b>Feed Override</b>"
-msgstr "<b>Przeskalowanie [%]</b>"
-
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:67
 msgid "Main"
 msgstr "Main"
@@ -1392,7 +1312,7 @@ msgstr "Aktywny automatyczny pomiar narzędzia"
 msgid "Z Pos."
 msgstr "Pozycja Z"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:139
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:138
 msgid "Max. Probe"
 msgstr "Maksimum próbnika"
 

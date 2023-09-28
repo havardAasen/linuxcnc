@@ -835,30 +835,6 @@ msgstr "Показать или скрыть путь инструмента"
 msgid "clear plot"
 msgstr "участок"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:15
-msgid "view along the Z axis from positive to negative"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:16
-msgid "Zoom in"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:17
-msgid "Zoom out"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:18
-msgid "Show or hide dimensions"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:19
-msgid "Show or hide tool path"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:20
-msgid "clear plot"
-msgstr ""
-
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:21
 msgid "Preview"
 msgstr "Просмотр"
@@ -1034,82 +1010,6 @@ msgstr "сбросить коррекцию подачи на 100 %"
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:66
 msgid "<b>Feed Override</b>"
 msgstr "<b>Переопределение Подачи</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:46
-msgid "Information over the tool in spindle"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:47
-msgid "Tool no."
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:48
-msgid "Diameter"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:49
-msgid "offset z"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:50
-msgid "offset x"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:52
-msgid "Vc= 0.00"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:53
-msgid "<b>Tool information</b>"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:54
-msgid "G and M code information as well as speed and feed"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:55
-msgid "active_mcodes_label"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:56
-msgid "active_gcodes_label"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:57
-msgid "<b>G-Code</b>"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:58
-msgid "<b>Cooling</b>"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:59
-msgid "<b>Spindle [rpm]</b>"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:60
-msgid "Vel."
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:61
-msgid "Displays the current velocity"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:62
-msgid "<b>Rapid Override</b>"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:63
-msgid "Displays the programmed feed rate"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:65
-msgid "reset feed override to 100 %"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:66
-msgid "<b>Feed Override</b>"
-msgstr ""
 
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:67
 msgid "Main"
@@ -1391,11 +1291,11 @@ msgstr "Оборудование"
 msgid "Use auto tool measurement"
 msgstr "Использовать автоматическое измерение инструмента"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:138
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:137
 msgid "Z Pos."
 msgstr "Z Поз."
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:139
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:138
 msgid "Max. Probe"
 msgstr "Макс. Зонд"
 
@@ -1820,7 +1720,7 @@ msgstr "изменить инструмент на выбранный"
 msgid "touch off the tool and set the value to the tool table"
 msgstr "отключите инструмент и установите значение в таблицу инструментов"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:246
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:245
 msgid ""
 "touchoff\n"
 "tool x"

@@ -27,6 +27,7 @@ function toggle(sec){
   if(e.style.display=="none"){
     e.style.display="block"
     i.src = 'minus.png';
+    i.alt = '-';
     if (storeOK()){localStorage.setItem(sec, "block");}
   }
   else {
@@ -44,6 +45,7 @@ function toggle_section(a){
     for (var i in sections[s]){
       document.getElementById(sections[s][i]).style.display = 'block';
       document.getElementById(sections[s][i] + '_image').src = 'minus.png';
+      document.getElementById(sections[s][i] + '_image').alt = '-';
       if (storeOK()){localStorage.setItem(sections[s][i], "block");}
     }
   }
@@ -51,6 +53,7 @@ function toggle_section(a){
     for (var i in sections[s]){
       document.getElementById(sections[s][i]).style.display = 'none';
       document.getElementById(sections[s][i] + '_image').src = 'plus.png';
+      document.getElementById(sections[s][i] + '_image').alt = '+';
       if (storeOK()){localStorage.setItem(sections[s][i], "none");}
     }
   }
@@ -63,15 +66,18 @@ function setup_page(){
         if (localStorage.getItem(sections[s][i]) === "block"){
           document.getElementById(sections[s][i]).style.display = 'block';
           document.getElementById(sections[s][i] + '_image').src = 'minus.png';
+          document.getElementById(sections[s][i] + '_image').alt = '-';
         }
         else{
           document.getElementById(sections[s][i]).style.display = 'none';
           document.getElementById(sections[s][i] + '_image').src = 'plus.png';
+          document.getElementById(sections[s][i] + '_image').alt = '+';
         }
       }
       else{
         document.getElementById(sections[s][i]).style.display = 'none';
         document.getElementById(sections[s][i] + '_image').src = 'plus.png';
+        document.getElementById(sections[s][i] + '_image').alt = '+';
       }
     }
   }
@@ -349,6 +355,7 @@ function setup_page(){
 		<li><a href="code/style-guide.html">Style Guide</a></li>
 		<li><a href="code/adding-configs.html">Adding Configs for Selection</a></li>
 		<li><a href="code/contributing-to-linuxcnc.html">Contributing to LinuxCNC</a></li>
+		<li><a href="code/writing-tests.html">Writing tests for LinuxCNC</a></li>
 		<li><a href="code/building-linuxcnc.html">Building LinuxCNC</a></li>
 	</ul>
 </div>
@@ -372,4 +379,3 @@ function setup_page(){
 </div>
 <p><input type="button" value="Expand Man Pages" onclick="return toggle_section(this);" id="manExpand"/>
    <input type="button" value="Collapse Man Pages" onclick="return toggle_section(this);" id="manCollapse"/></p>
-</body></html>

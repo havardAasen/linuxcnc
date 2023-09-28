@@ -16,7 +16,6 @@ add_executable(milltask
         emccanon.cc
         emctaskmain.cc
         taskintf.cc
-        taskmodule.cc
         taskclass.cc
         backtrace.cc
         )

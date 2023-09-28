@@ -51,7 +51,7 @@ char *module_whitelist[] = {
 /* module path must start with this. */
 
 char *path_whitelist[] = {
-    "/lib/modules", NULL,NULL,
+    "/lib/modules", RTDIR, NULL,
 
     NULL
 };
@@ -206,8 +206,6 @@ int main(int argc, char **argv) {
         perror("uname");
         return 1;
     }
-
-    path_whitelist[1] = EMC2_RTLIB_DIR;
 
     res = snprintf(buf, sizeof(buf), "/usr/realtime-%s/modules", u.release);
     if(res < 0 || res >= sizeof(buf))

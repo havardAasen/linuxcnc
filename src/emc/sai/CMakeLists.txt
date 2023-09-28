@@ -2,7 +2,6 @@ add_executable(rs274
         saicanon.cc
         driver.cc
         dummyemcstat.cc
-        ../task/taskmodule.cc
         ../task/taskclass.cc
         )
 target_link_libraries(rs274

@@ -1384,9 +1384,7 @@ static int unloadrt_comp(char *mod_name)
     }
     if ( pid == 0 ) {
 	/* this is the child process - prepare to exec() rmmod */
-    char path[4096];
-    snprintf(path, sizeof(path), "%s/linuxcnc_module_helper", EMC2_BIN_DIR);
-	argv[0] = path;
+	argv[0] = EMC2_BIN_DIR "/linuxcnc_module_helper";
 	argv[1] = "remove";
 	argv[2] = mod_name;
 	/* add a NULL to terminate the argv array */

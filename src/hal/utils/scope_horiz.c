@@ -462,9 +462,7 @@ static void dialog_realtime_not_loaded(void)
 
     if(first_time) {
         first_time = 0;
-        char cmd[PATH_MAX];
-        snprintf(cmd, sizeof(cmd), "%s/halcmd loadrt scope_rt", EMC2_BIN_DIR);
-        if(system(cmd) == 0) {
+        if(system(EMC2_BIN_DIR "/halcmd loadrt scope_rt") == 0) {
             sleep(1);
             return;
         }

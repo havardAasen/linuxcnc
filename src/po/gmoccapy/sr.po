@@ -1050,86 +1050,6 @@ msgstr "vrati brzinu kretanja alata na 100 %"
 msgid "<b>Feed Override</b>"
 msgstr "<b>Brz. pomeranja alata [%]</b>"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:46
-msgid "Information over the tool in spindle"
-msgstr "podatak o alatu u vretenu"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:47
-msgid "Tool no."
-msgstr "Br. alata"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:48
-msgid "Diameter"
-msgstr "Prečnik"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:49
-msgid "offset z"
-msgstr "Z odstup."
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:50
-msgid "offset x"
-msgstr "X odstup."
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:52
-#, fuzzy
-msgid "Vc= 0.00"
-msgstr "0.000"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:53
-msgid "<b>Tool information</b>"
-msgstr "<b>Podaci o alatu</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:54
-msgid "G and M code information as well as speed and feed"
-msgstr "G i M - kod informacije, kao i brzine vretena i brzine pomeranja alata"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:55
-msgid "active_mcodes_label"
-msgstr "Aktivan M-kod"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:56
-msgid "active_gcodes_label"
-msgstr "Aktivan G-kod"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:57
-msgid "<b>G-Code</b>"
-msgstr "<b>G-kod</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:58
-msgid "<b>Cooling</b>"
-msgstr "<b>Hlađenje</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:59
-msgid "<b>Spindle [rpm]</b>"
-msgstr "<b>Vreteno [o/min]</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:60
-msgid "Vel."
-msgstr "Brz."
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:61
-msgid "Displays the current velocity"
-msgstr "Prikazuje trenutnu brzinu"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:62
-#, fuzzy
-msgid "<b>Rapid Override</b>"
-msgstr "<b>Brz. pomeranja alata [%]</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:63
-#, fuzzy
-msgid "Displays the programmed feed rate"
-msgstr "Prikazuje programiranu brzinu kretanja alata"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:65
-msgid "reset feed override to 100 %"
-msgstr "vrati brzinu kretanja alata na 100 %"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:66
-#, fuzzy
-msgid "<b>Feed Override</b>"
-msgstr "<b>Brz. pomeranja alata [%]</b>"
-
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:67
 msgid "Main"
 msgstr "Glavni"
@@ -1419,7 +1339,7 @@ msgstr "Koristi automatsko merenje alata"
 msgid "Z Pos."
 msgstr "Z poz."
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:139
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:138
 msgid "Max. Probe"
 msgstr "Maks. Dodir"
 

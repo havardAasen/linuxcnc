@@ -980,82 +980,6 @@ msgstr "将进给速率重置为100 %"
 msgid "<b>Feed Override</b>"
 msgstr "<b>进给速率</b>"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:46
-msgid "Information over the tool in spindle"
-msgstr "主轴上的刀具信息"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:47
-msgid "Tool no."
-msgstr "刀具号 no."
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:48
-msgid "Diameter"
-msgstr "直径"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:49
-msgid "offset z"
-msgstr "偏移量z"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:50
-msgid "offset x"
-msgstr "偏移量x"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:52
-msgid "Vc= 0.00"
-msgstr "Vc= 0.00"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:53
-msgid "<b>Tool information</b>"
-msgstr "<b>刀具信息</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:54
-msgid "G and M code information as well as speed and feed"
-msgstr "G和M代码信息以及速度和进给"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:55
-msgid "active_mcodes_label"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:56
-msgid "active_gcodes_label"
-msgstr ""
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:57
-msgid "<b>G-Code</b>"
-msgstr "<b>当前插补指令集</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:58
-msgid "<b>Cooling</b>"
-msgstr "<b>冷却</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:59
-msgid "<b>Spindle [rpm]</b>"
-msgstr "<b>主轴[转速]</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:60
-msgid "Vel."
-msgstr "速度"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:61
-msgid "Displays the current velocity"
-msgstr "显示当前速度"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:62
-msgid "<b>Rapid Override</b>"
-msgstr "<b>空程速率</b>"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:63
-msgid "Displays the programmed feed rate"
-msgstr "显示编程的进给速率"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:65
-msgid "reset feed override to 100 %"
-msgstr "将进给速率重置为100 %"
-
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:66
-msgid "<b>Feed Override</b>"
-msgstr "<b>进给速率</b>"
-
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:67
 msgid "Main"
 msgstr "主要"
@@ -1340,7 +1264,7 @@ msgstr "使用自动刀具测量"
 msgid "Z Pos."
 msgstr "Z 位置。"
 
-#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:139
+#: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:138
 msgid "Max. Probe"
 msgstr "最大探测"
 
@@ -1804,9 +1728,6 @@ msgstr "加载文件"
 #: src/emc/usr_intf/gmoccapy/gmoccapy.glade.h:257
 msgid "home joints"
 msgstr "关节回零"
-
-#~ msgid "Size"
-#~ msgstr "大小"
 
 #, fuzzy
 #~ msgid "Font size"

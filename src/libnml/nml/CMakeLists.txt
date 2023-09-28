@@ -1,6 +1,5 @@
 add_library(nml SHARED
         cmd_msg.cc
-        nml_mod.cc
         nml_oi.cc
         nml_srv.cc
         nml.cc

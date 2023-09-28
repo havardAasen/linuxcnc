@@ -29,7 +29,6 @@
 #include "nml_oi.hh"
 #include "timer.hh"
 #include "nml_srv.hh"           // run_nml_servers()
-#include "config.h"
 #include <rtapi_string.h>
 
 static int iniLoad(const char *filename)
@@ -61,7 +60,6 @@ static int iniLoad(const char *filename)
 	rtapi_strxcpy(emc_nmlfile, inistring);
     } else {
 	// not found, use default
-    rtapi_snprintf(emc_nmlfile, sizeof(emc_nmlfile), "%s", EMC2_DEFAULT_NMLFILE);
     }
     // close it
     inifile.Close();
