@@ -57,7 +57,7 @@ set(MAIN_BUILD ON)
 # general options
 option(RUN_IN_PLACE "activate this if you want to execute linuxcnc in place, instead of installing it." ON)
 option(BUILD_UDEV "deactivate this if udev is not available. Was previously named --disable-userspace-pci." OFF)
-option(TOOL_NML "Use nml for tool data, default is mmap" ON)
+option(TOOL_NML "Use nml for tool data, default is mmap" OFF)
 option(BUILD_PARPORT "whether to build parallel port support or not" ON)
 
 # realtime options

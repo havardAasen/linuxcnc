@@ -12,7 +12,7 @@ if(${TOOL_NML})
             tooldata_nml.cc
             )
 else()
-    message(FATAL_ERROR "unimplemented, please use nml.")
+	#    message(FATAL_ERROR "unimplemented, please use nml.")
 endif()
 
 add_executable(tooldata_watch tool_watch.cc)

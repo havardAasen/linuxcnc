@@ -40,9 +40,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
-#ifdef HAVE_SYS_IO_H
+//#ifdef HAVE_SYS_IO_H
 #include <sys/io.h>
-#endif
+//#endif
 #include <sys/resource.h>
 #include <sys/mman.h>
 #ifdef __linux__
