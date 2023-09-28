@@ -32,8 +32,6 @@
 #include "config.h"
 #include <rtapi_string.h>
 
-static int tool_channels = 1;
-
 static int iniLoad(const char *filename)
 {
     IniFile inifile;
@@ -65,7 +63,6 @@ static int iniLoad(const char *filename)
 	// not found, use default
     rtapi_snprintf(emc_nmlfile, sizeof(emc_nmlfile), "%s", EMC2_DEFAULT_NMLFILE);
     }
-    inifile.Find(&tool_channels,"TOOL_CHANNELS","EMC");
     // close it
     inifile.Close();
 
@@ -101,8 +98,6 @@ static void daemonize()
 static RCS_CMD_CHANNEL *emcCommandChannel = NULL;
 static RCS_STAT_CHANNEL *emcStatusChannel = NULL;
 static NML *emcErrorChannel = NULL;
-static RCS_CMD_CHANNEL *toolCommandChannel = NULL;
-static RCS_STAT_CHANNEL *toolStatusChannel = NULL;
 
 int main(int argc, char *argv[])
 {
@@ -125,7 +120,6 @@ int main(int argc, char *argv[])
 
     while (fabs(etime() - start_time) < 10.0 &&
 	   (emcCommandChannel == NULL || emcStatusChannel == NULL
-	    || (tool_channels && (toolCommandChannel == NULL || toolStatusChannel == NULL))
 	    || emcErrorChannel == NULL)
 	) {
 	if (NULL == emcCommandChannel) {
@@ -144,18 +138,6 @@ int main(int argc, char *argv[])
 	    emcErrorChannel =
 		new NML(nmlErrorFormat, "emcError", "emcsvr", emc_nmlfile);
 	}
-	if (tool_channels) {
-	    if (NULL == toolCommandChannel) {
-		toolCommandChannel =
-		    new RCS_CMD_CHANNEL(emcFormat, "toolCmd", "emcsvr",
-					emc_nmlfile);
-	    }
-	    if (NULL == toolStatusChannel) {
-		toolStatusChannel =
-		    new RCS_STAT_CHANNEL(emcFormat, "toolSts", "emcsvr",
-					 emc_nmlfile);
-	    }
-	}
 
 	if (!emcCommandChannel->valid()) {
 	    delete emcCommandChannel;
@@ -168,16 +150,6 @@ int main(int argc, char *argv[])
 	if (!emcErrorChannel->valid()) {
 	    delete emcErrorChannel;
 	    emcErrorChannel = NULL;
-	}
-	if (tool_channels) {
-	    if (!toolCommandChannel->valid()) {
-		delete toolCommandChannel;
-		toolCommandChannel = NULL;
-	    }
-	    if (!toolStatusChannel->valid()) {
-		delete toolStatusChannel;
-		toolStatusChannel = NULL;
-	    }
 	}
 	esleep(0.200);
     }
@@ -197,18 +169,6 @@ int main(int argc, char *argv[])
     if (NULL == emcErrorChannel) {
 	emcErrorChannel =
 	    new NML(nmlErrorFormat, "emcError", "emcsvr", emc_nmlfile);
-    }
-    if (tool_channels) {
-	if (NULL == toolCommandChannel) {
-	    toolCommandChannel =
-		new RCS_CMD_CHANNEL(emcFormat, "toolCmd", "emcsvr",
-				    emc_nmlfile);
-	}
-	if (NULL == toolStatusChannel) {
-	    toolStatusChannel =
-		new RCS_STAT_CHANNEL(emcFormat, "toolSts", "emcsvr",
-				     emc_nmlfile);
-	}
     }
     daemonize();
     run_nml_servers();

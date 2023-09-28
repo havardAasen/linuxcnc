@@ -301,8 +301,8 @@ class GLCanon(Translated, ArcsToSegmentsMixin):
         if self.suppress > 0: return
         self.first_move = False
         l = self.rotate_and_translate(x,y,z,0,0,0,0,0,0)[:3]
-        l += [self.lo[3], self.lo[4], self.lo[5],
-               self.lo[6], self.lo[7], self.lo[8]]
+        l += (self.lo[3], self.lo[4], self.lo[5],
+               self.lo[6], self.lo[7], self.lo[8])
         self.feed_append((self.lineno, self.lo, l, self.feedrate, (self.xo, self.yo, self.zo)))
 #        self.dwells_append((self.lineno, self.colors['dwell'], x + self.offset_x, y + self.offset_y, z + self.offset_z, 0))
         self.feed_append((self.lineno, l, self.lo, self.feedrate, (self.xo, self.yo, self.zo)))
@@ -491,7 +491,7 @@ class GlCanonDraw:
         self.trajcoordinates = "unknown"
         self.dro_in = "% 9.4f"
         self.dro_mm = "% 9.3f"
-        self.show_overlay = True
+        self.show_overlay = False
         self.enable_dro = True
         self.cone_basesize = .5
         self.show_small_origin = True
@@ -1486,6 +1486,7 @@ class GlCanonDraw:
 
         # allows showing/hiding overlay DRO readout
         if self.enable_dro:
+            self.show_overlay = True
             for string in thestring:
                 maxlen = max(maxlen, len(string))
                 glRasterPos2i(stringstart_xpos, ypos)
@@ -1523,6 +1524,8 @@ class GlCanonDraw:
                         self.show_icon(idx,limiticon)
 
                 ypos -= linespace
+        else:
+            self.show_overlay = False
 
         glDepthFunc(GL_LESS)
         glDepthMask(GL_TRUE)
