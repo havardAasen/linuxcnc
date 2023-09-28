@@ -2479,7 +2479,9 @@ PyMODINIT_FUNC PyInit_linuxcnc(void)
     pthread_mutex_init(&mutex, NULL);
 
     PyModule_AddStringConstant(m, "PREFIX", EMC2_HOME);
-    PyModule_AddStringConstant(m, "SHARE", EMC2_HOME "/share");
+    char share[LINE_MAX];
+    snprintf(share, sizeof(share), "%s/share", EMC2_HOME);
+    PyModule_AddStringConstant(m, "SHARE", share);
     PyModule_AddStringConstant(m, "nmlfile", EMC2_DEFAULT_NMLFILE);
 
     PyModule_AddIntConstant(m, "OPERATOR_ERROR", EMC_OPERATOR_ERROR_TYPE);

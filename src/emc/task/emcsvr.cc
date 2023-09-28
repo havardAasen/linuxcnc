@@ -29,6 +29,7 @@
 #include "nml_oi.hh"
 #include "timer.hh"
 #include "nml_srv.hh"           // run_nml_servers()
+#include "config.h"
 #include <rtapi_string.h>
 
 static int iniLoad(const char *filename)
@@ -48,7 +49,8 @@ static int iniLoad(const char *filename)
 	}
     } else {
 	// not found, use default
-	emc_debug = 0;
+	rtapi_snprintf(emc_nmlfile, sizeof(emc_nmlfile), "%s", EMC2_DEFAULT_NMLFILE);
+        emc_debug = 0;
     }
     if (emc_debug & EMC_DEBUG_RCS) {
 	set_rcs_print_flag(PRINT_EVERYTHING);
