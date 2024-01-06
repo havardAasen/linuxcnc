@@ -7,7 +7,7 @@ include(CMakeDetermineSystem)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 # find external dependecies
-
+find_package(PkgConfig REQUIRED)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
@@ -41,6 +41,9 @@ find_package(TCL REQUIRED)
 find_package(Tclsh REQUIRED)
 
 find_package(GTK3 REQUIRED gtk)
+pkg_check_modules(LIBUSB10 libusb-1.0)
+pkg_check_modules(LIBMODBUS libmodbus)
+
 
 # C and CXX flags
 include(buildoptions)
@@ -156,6 +159,7 @@ add_subdirectory(src/hal)
 add_subdirectory(src/hal/components)
 add_subdirectory(src/hal/drivers)
 add_subdirectory(src/hal/classicladder)
+add_subdirectory(src/hal/user_comps)
 add_subdirectory(src/libnml)
 add_subdirectory(src/module_helper)
 add_subdirectory(src/emc)
