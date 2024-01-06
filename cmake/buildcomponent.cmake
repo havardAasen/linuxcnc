@@ -73,18 +73,27 @@ function(compile_component name src userspace relative)
         set(S ${src})
     endif()
     if(${userspace})
+        set(SECTION "1")
         set(USERSPACE "--userspace")
     else()
+        set(SECTION "9")
         set(USERSPACE "")
     endif()
     get_filename_component(SRC_NAME ${src} NAME_WE)
+    # TODO: We might need to update this path, depending on how we build the project.
+    set(MAN_PAGE_DIRECTORY ${CMAKE_BINARY_DIR}/docs/man/man${SECTION})
+    set(MAN_PAGE ${SRC_NAME}.${SECTION})
     if(${MAIN_BUILD})
-        add_custom_command(OUTPUT ${SRC_NAME}.c
+        add_custom_command(OUTPUT ${SRC_NAME}.c ${MAN_PAGE}
                 COMMAND ${Python3_EXECUTABLE} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/halcompile ${USERSPACE} --preprocess -o ${SRC_NAME}.c ${S}
+                COMMAND ${CMAKE_COMMAND} -E make_directory ${MAN_PAGE_DIRECTORY}
+                COMMAND ${Python3_EXECUTABLE} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/halcompile ${USERSPACE} --document -o ${MAN_PAGE_DIRECTORY}/${MAN_PAGE} ${S}
                 DEPENDS halcompile_script ${src})
     else()
-        add_custom_command(OUTPUT ${SRC_NAME}.c
+        add_custom_command(OUTPUT ${SRC_NAME}.c ${MAN_PAGE}
                 COMMAND ${Python3_EXECUTABLE} halcompile ${USERSPACE} --preprocess -o ${SRC_NAME}.c ${S}
+                COMMAND ${CMAKE_COMMAND} -E make_directory ${MAN_PAGE_DIRECTORY}
+                COMMAND ${Python3_EXECUTABLE} halcompile ${USERSPACE} --document -o ${MAN_PAGE_DIRECTORY}/${MAN_PAGE} ${S}
                 DEPENDS ${src})
     endif()
 
