@@ -2525,86 +2525,8 @@ int Interp::ini_load(const char *filename)
     return 0;
 }
 
-int Interp::init_tool_parameters()
-{
-  if (_setup.random_toolchanger) {
-     // random_toolchanger: tool at startup expected
-    _setup.parameters[5400] = _setup.tool_table[0].toolno;
-    _setup.parameters[5401] = _setup.tool_table[0].offset.tran.x;
-    _setup.parameters[5402] = _setup.tool_table[0].offset.tran.y;
-    _setup.parameters[5403] = _setup.tool_table[0].offset.tran.z;
-    _setup.parameters[5404] = _setup.tool_table[0].offset.a;
-    _setup.parameters[5405] = _setup.tool_table[0].offset.b;
-    _setup.parameters[5406] = _setup.tool_table[0].offset.c;
-    _setup.parameters[5407] = _setup.tool_table[0].offset.u;
-    _setup.parameters[5408] = _setup.tool_table[0].offset.v;
-    _setup.parameters[5409] = _setup.tool_table[0].offset.w;
-    _setup.parameters[5410] = _setup.tool_table[0].diameter;
-    _setup.parameters[5411] = _setup.tool_table[0].frontangle;
-    _setup.parameters[5412] = _setup.tool_table[0].backangle;
-    _setup.parameters[5413] = _setup.tool_table[0].orientation;
-  } else {
-    // non random_toolchanger: no tool at startup, one-time init
-    if (_setup.tool_table[0].toolno == -1) {
-      default_tool_parameters();
-    }
-  }
-  return 0;
-}
 
-int Interp::default_tool_parameters()
-{
-  _setup.parameters[5400] =  0; // toolno
-  _setup.parameters[5401] =  0; // x offset
-  _setup.parameters[5402] =  0; // y offset RESERVED
-  _setup.parameters[5403] =  0; // z offset
-  _setup.parameters[5404] =  0; // a offset RESERVED
-  _setup.parameters[5405] =  0; // b offset RESERVED
-  _setup.parameters[5406] =  0; // c offset RESERVED
-  _setup.parameters[5407] =  0; // u offset RESERVED
-  _setup.parameters[5408] =  0; // v offset RESERVED
-  _setup.parameters[5409] =  0; // w offset RESERVED
-  _setup.parameters[5410] =  0; // diameter
-  _setup.parameters[5411] =  0; // frontangle
-  _setup.parameters[5412] =  0; // backangle
-  _setup.parameters[5413] =  0; // orientation
-  return 0;
-}
 
-int Interp::set_tool_parameters()
-{
-  // invoke to set tool parameters for current tool (pocket==0)
-  // when a tool is absent, set default (zero offset) tool parameters
-
-  if ((! _setup.random_toolchanger) && (_setup.tool_table[0].toolno <= 0)) {
-    default_tool_parameters();
-    return 0;
-  }
-// test to examine tool comment field for current tool:
-// #define TOOL_COMMENT_SHOW
-#ifdef  TOOL_COMMENT_SHOW //{
-    fprintf(stderr,"%s %s toolno=%d comment=%s\n",
-           __FILE__,__FUNCTION__,
-           _setup.tool_table[0].toolno,
-           _setup.tool_table[0].comment);
-#endif //}
-  _setup.parameters[5400] = _setup.tool_table[0].toolno;
-  _setup.parameters[5401] = _setup.tool_table[0].offset.tran.x;
-  _setup.parameters[5402] = _setup.tool_table[0].offset.tran.y;
-  _setup.parameters[5403] = _setup.tool_table[0].offset.tran.z;
-  _setup.parameters[5404] = _setup.tool_table[0].offset.a;
-  _setup.parameters[5405] = _setup.tool_table[0].offset.b;
-  _setup.parameters[5406] = _setup.tool_table[0].offset.c;
-  _setup.parameters[5407] = _setup.tool_table[0].offset.u;
-  _setup.parameters[5408] = _setup.tool_table[0].offset.v;
-  _setup.parameters[5409] = _setup.tool_table[0].offset.w;
-  _setup.parameters[5410] = _setup.tool_table[0].diameter;
-  _setup.parameters[5411] = _setup.tool_table[0].frontangle;
-  _setup.parameters[5412] = _setup.tool_table[0].backangle;
-  _setup.parameters[5413] = _setup.tool_table[0].orientation;
-
-  return 0;
-}
 
 int Interp::enter_remap(void)
 {
