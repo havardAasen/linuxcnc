@@ -15,8 +15,7 @@ endif()
 
 # specify the default C++ compiler options
 # change standard to 20 as soon as possible
-# (need gcc8, gcc7 allows 17)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 if(NOT DEBUG)
     set(CMAKE_CXX_FLAGS -Wall\ -O2)
